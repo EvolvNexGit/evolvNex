@@ -1,45 +1,55 @@
 "use client"
 
-import Image from "next/image"
-
 const footerLinks = {
-  Services: ["Websites", "Branding", "Automation", "Systems"],
+  Services: ["Web Development", "Brand Identity", "Automation", "Growth Systems"],
   Company: ["About", "Careers", "Blog", "Contact"],
-  Resources: ["Case Studies", "Guides", "Templates", "Newsletter"],
-  Legal: ["Privacy", "Terms", "Cookies", "Licenses"],
+  Legal: ["Privacy Policy", "Terms of Service"],
 }
+
+const socialLinks = [
+  { name: "Twitter", href: "#" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/evolvnex/" },
+  { name: "Instagram", href: "#" },
+]
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t-4 border-primary">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
+    <footer className="bg-background border-t border-border">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Logo & Tagline */}
           <div className="col-span-2">
-            <Image
-              src="/images/logo.jpg"
-              alt="EvolvNex"
-              width={140}
-              height={40}
-              className="h-10 w-auto mb-4"
-            />
-            <p className="text-muted-foreground font-light">
+            <span className="text-2xl font-black tracking-tight mb-4 block">EVOLVNEX</span>
+            <p className="text-muted-foreground font-body mb-6">
               Where Brands Become Systems.
             </p>
+            <div className="flex gap-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="font-serif font-black text-sm uppercase tracking-wider mb-4">
+              <h4 className="font-heading font-bold text-sm uppercase tracking-widest mb-4">
                 {title}
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors font-body"
                     >
                       {link}
                     </a>
@@ -51,9 +61,12 @@ export function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="mt-16 pt-8 border-t border-border">
-          <p className="text-sm text-muted-foreground text-center">
+        <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground font-body">
             © {new Date().getFullYear()} EvolvNex. All rights reserved.
+          </p>
+          <p className="text-sm text-muted-foreground font-body">
+            Built with precision. Designed for growth.
           </p>
         </div>
       </div>

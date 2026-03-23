@@ -1,42 +1,18 @@
 import type { Metadata } from 'next'
-import { Merriweather, Roboto } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
 import './globals.css'
 
-const merriweather = Merriweather({ 
+const inter = Inter({ 
   subsets: ["latin"],
-  weight: ["900"],
-  variable: "--font-merriweather"
-});
-
-const roboto = Roboto({ 
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-roboto"
+  variable: "--font-inter"
 });
 
 export const metadata: Metadata = {
-  title: 'EvolvNex | Digital Growth Agency',
-  description: 'We Build Digital Growth Systems - Where Brands Become Systems',
+  title: 'EvolvNex',
+  description: 'A high-end digital agency platform that transforms brands into scalable, automated growth systems.',
   generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
 }
 
 export default function RootLayout({
@@ -45,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${merriweather.variable} ${roboto.variable} font-sans antialiased`}>
+    <html lang="en">
+      <body className={`${inter.variable} font-sans antialiased`}>
         {children}
         <Toaster position="bottom-right" />
         <Analytics />

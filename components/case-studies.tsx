@@ -6,20 +6,17 @@ const caseStudies = [
   {
     title: "Nexus Finance",
     category: "Branding + Automation",
-    stat: "3.2x Revenue Growth",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    stat: "+320% Revenue",
   },
   {
     title: "Pulse Health",
-    category: "Website + Systems",
-    stat: "150% More Leads",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop",
+    category: "Web + Systems",
+    stat: "+150% Leads",
   },
   {
     title: "Vertex Commerce",
-    category: "E-Commerce + Automation",
-    stat: "2.8x Conversion Rate",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    category: "E-commerce + AI",
+    stat: "+280% Conversion",
   },
 ]
 
@@ -28,48 +25,52 @@ const marqueeItems = [...caseStudies, ...caseStudies, ...caseStudies]
 
 export function CaseStudies() {
   return (
-    <section id="work" className="py-24 bg-secondary">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+    <section id="work" className="py-32 bg-card relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-serif font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight"
         >
-          Case Studies
-        </motion.h2>
+          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">Our Work</p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
+            Case Studies
+          </h2>
+        </motion.div>
       </div>
 
       {/* Marquee Container */}
       <div className="overflow-hidden">
-        <div className="flex animate-marquee-left">
+        <div className="case-marquee flex">
           {marqueeItems.map((study, index) => (
             <div
               key={`${study.title}-${index}`}
-              className="flex-shrink-0 w-[400px] mx-4 group"
+              className="flex-shrink-0 w-[400px] mx-3 group cursor-pointer"
             >
-              <div className="relative overflow-hidden border border-border bg-card">
-                <div className="aspect-[3/2] overflow-hidden">
-                  <img
-                    src={study.image}
-                    alt={study.title}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <span className="inline-block bg-primary text-primary-foreground text-xs uppercase tracking-wider px-3 py-1 mb-3">
-                    {study.category}
-                  </span>
-                  <h3 className="font-serif font-black text-xl uppercase tracking-tight mb-2">
-                    {study.title}
-                  </h3>
-                  <p className="text-primary font-medium">{study.stat}</p>
-                </div>
+              <div className="bg-background border border-border p-8 hover:border-primary/50 transition-all duration-300">
+                <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-bold mb-6 bg-primary text-primary-foreground">
+                  {study.category}
+                </span>
+                <h3 className="text-2xl font-heading font-bold uppercase tracking-wide mb-3">
+                  {study.title}
+                </h3>
+                <p className="text-primary font-bold text-lg">{study.stat}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes case-marquee {
+          0% { transform: translateX(-33.33%); }
+          100% { transform: translateX(0%); }
+        }
+        .case-marquee {
+          animation: case-marquee 18s linear infinite;
+          width: max-content;
+        }
+      `}</style>
     </section>
   )
 }

@@ -3,10 +3,10 @@
 import { motion } from "framer-motion"
 
 const stats = [
-  { value: "120+", label: "Projects" },
+  { value: "120+", label: "Projects Delivered" },
   { value: "3.2x", label: "Avg ROI" },
-  { value: "98%", label: "Retention" },
-  { value: "5 Years", label: "" },
+  { value: "98%", label: "Client Retention" },
+  { value: "5", label: "Years Experience" },
 ]
 
 export function Hero() {
@@ -18,30 +18,33 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center bg-background diagonal-stripes">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
+      <div className="absolute inset-0 diagonal-stripes" />
+      
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-5xl"
         >
-          <h1 className="font-serif font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight leading-none mb-8">
-            We Build Digital Growth Systems
+          <h1 className="text-6xl sm:text-8xl lg:text-[10rem] font-heading font-black uppercase tracking-tight leading-none mb-8">
+            We Build<br />
+            <span className="text-primary">Digital</span> Growth<br />
+            Systems
           </h1>
-          <p className="text-2xl sm:text-3xl md:text-4xl text-muted-foreground font-light mb-12">
-            Where Brands Become Systems.
+          <p className="text-xl sm:text-2xl text-muted-foreground font-body mb-12 max-w-2xl">
+            Where Brands Become Systems. We transform ambitious brands into scalable, automated growth engines.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => scrollToSection("#work")}
-              className="border-2 border-foreground text-foreground px-8 py-4 text-sm font-medium uppercase tracking-wider hover:bg-foreground hover:text-background transition-colors"
+              className="border-2 border-foreground text-foreground px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors"
             >
               View Our Work
             </button>
             <button
               onClick={() => scrollToSection("#contact")}
-              className="bg-primary text-primary-foreground px-8 py-4 text-sm font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors"
+              className="bg-primary text-primary-foreground px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors"
             >
               Start Your Project
             </button>
@@ -54,20 +57,21 @@ export function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="border-t border-border mt-auto"
+        className="border-t border-border mt-auto relative z-10"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4">
             {stats.map((stat, index) => (
-              <div key={index} className="py-8 px-4 text-center">
-                <div className="font-serif font-black text-3xl md:text-4xl text-foreground">
+              <div 
+                key={index} 
+                className={`py-10 px-6 ${index !== 0 ? 'border-l border-border' : ''}`}
+              >
+                <div className="font-heading font-black text-4xl md:text-5xl text-foreground mb-2">
                   {stat.value}
                 </div>
-                {stat.label && (
-                  <div className="text-sm text-muted-foreground uppercase tracking-wider mt-1">
-                    {stat.label}
-                  </div>
-                )}
+                <div className="text-sm text-muted-foreground uppercase tracking-widest font-body">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>

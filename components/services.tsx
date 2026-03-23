@@ -1,72 +1,74 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Globe, Layers, Zap, Settings } from "lucide-react"
+import { Globe, Palette, Zap, BarChart3 } from "lucide-react"
 
 const services = [
   {
     icon: Globe,
-    title: "Websites",
-    description: "Custom, high-performance websites",
-    features: ["Responsive Design", "SEO Optimized", "Fast Loading", "CMS Integration"],
+    title: "Web Development",
+    description: "Custom, high-performance websites built for conversion and scale.",
+    features: ["Custom Design", "Responsive", "SEO Optimized", "Fast Loading"],
   },
   {
-    icon: Layers,
-    title: "Branding",
-    description: "Visual identity systems",
-    features: ["Logo Design", "Brand Guidelines", "Color Systems", "Typography"],
+    icon: Palette,
+    title: "Brand Identity",
+    description: "Strategic visual identities that differentiate and resonate.",
+    features: ["Logo Design", "Brand Guidelines", "Visual Systems", "Brand Strategy"],
   },
   {
     icon: Zap,
     title: "Automation",
-    description: "Workflow automation",
-    features: ["Process Automation", "Email Flows", "CRM Integration", "AI Workflows"],
+    description: "Intelligent workflows that eliminate manual tasks and scale operations.",
+    features: ["Process Automation", "AI Integration", "CRM Setup", "Email Flows"],
   },
   {
-    icon: Settings,
-    title: "Systems",
-    description: "Business infrastructure",
-    features: ["Tech Stack Setup", "API Integration", "Database Design", "Analytics"],
+    icon: BarChart3,
+    title: "Growth Systems",
+    description: "Data-driven infrastructure for sustainable, predictable growth.",
+    features: ["Analytics Setup", "Funnel Optimization", "Lead Generation", "Conversion Tracking"],
   },
 ]
 
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-background">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+    <section id="services" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 diagonal-stripes" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-serif font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight mb-16"
+          className="mb-16"
         >
-          Services
-        </motion.h2>
+          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">What We Do</p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
+            Our Services
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative bg-card border border-border p-6 hover:border-primary transition-colors"
+              className="bg-card border border-border p-8 relative group hover:border-primary/50 transition-all duration-300"
             >
-              {/* Accent bar on hover */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-              
-              <service.icon className="h-10 w-10 text-primary mb-4" />
-              <h3 className="font-serif font-black text-xl uppercase tracking-tight mb-2">
+              <service.icon className="w-10 h-10 text-primary mb-6" strokeWidth={1.5} />
+              <h3 className="text-xl font-heading font-bold uppercase tracking-wide mb-3">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground text-sm mb-4">
+              <p className="text-muted-foreground font-body text-sm leading-relaxed mb-6">
                 {service.description}
               </p>
               <ul className="space-y-2">
                 {service.features.map((feature) => (
-                  <li key={feature} className="text-sm text-muted-foreground flex items-center gap-2">
-                    <span className="w-1 h-1 bg-primary" />
+                  <li key={feature} className="text-sm text-muted-foreground font-body flex items-center gap-2">
+                    <span className="w-1 h-1 bg-primary flex-shrink-0" />
                     {feature}
                   </li>
                 ))}

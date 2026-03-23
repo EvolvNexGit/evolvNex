@@ -3,13 +3,11 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
-import Image from "next/image"
 
 const navLinks = [
   { name: "Services", href: "#services" },
-  { name: "Work", href: "#work" },
   { name: "Approach", href: "#approach" },
-  { name: "Pricing", href: "#pricing" },
+  { name: "Work", href: "#work" },
   { name: "Contact", href: "#contact" },
 ]
 
@@ -37,53 +35,41 @@ export function Navbar() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
+          isScrolled ? "bg-background/95 backdrop-blur-sm" : "bg-transparent"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
-            {/* Logo */}
-            <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <Image
-                src="/images/logo.jpg"
-                alt="EvolvNex"
-                width={140}
-                height={40}
-                className="h-10 w-auto"
-              />
-            </a>
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          {/* Logo */}
+          <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <span className="text-2xl font-black tracking-tight">EVOLVNEX</span>
+          </a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
-                >
-                  {link.name}
-                </button>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden md:block">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
               <button
-                onClick={() => scrollToSection("#contact")}
-                className="bg-primary text-primary-foreground px-6 py-3 text-sm font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors"
+                key={link.name}
+                onClick={() => scrollToSection(link.href)}
+                className="text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors font-body font-medium"
               >
-                Start Project
+                {link.name}
               </button>
-            </div>
-
-            {/* Mobile Menu Button */}
+            ))}
             <button
-              className="md:hidden text-foreground"
-              onClick={() => setIsMobileMenuOpen(true)}
+              onClick={() => scrollToSection("#contact")}
+              className="bg-primary text-primary-foreground px-6 py-2.5 text-sm uppercase tracking-widest font-bold hover:bg-primary/90 transition-colors"
             >
-              <Menu className="h-6 w-6" />
+              Book a Call
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-foreground"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <Menu className="h-7 w-7" strokeWidth={2} />
+          </button>
         </div>
       </nav>
 
@@ -103,16 +89,10 @@ export function Navbar() {
               transition={{ delay: 0.1 }}
               className="flex flex-col h-full"
             >
-              <div className="flex items-center justify-between px-4 h-20 border-b border-border">
-                <Image
-                  src="/images/logo.jpg"
-                  alt="EvolvNex"
-                  width={140}
-                  height={40}
-                  className="h-10 w-auto"
-                />
+              <div className="flex items-center justify-between px-6 h-20">
+                <span className="text-2xl font-black tracking-tight">EVOLVNEX</span>
                 <button onClick={() => setIsMobileMenuOpen(false)}>
-                  <X className="h-6 w-6" />
+                  <X className="h-7 w-7" />
                 </button>
               </div>
 
@@ -124,7 +104,7 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 + index * 0.05 }}
                     onClick={() => scrollToSection(link.href)}
-                    className="text-2xl font-serif font-black uppercase tracking-wider hover:text-primary transition-colors"
+                    className="text-2xl font-black uppercase tracking-widest hover:text-primary transition-colors"
                   >
                     {link.name}
                   </motion.button>
@@ -134,9 +114,9 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35 }}
                   onClick={() => scrollToSection("#contact")}
-                  className="mt-4 bg-primary text-primary-foreground px-8 py-4 text-lg font-medium uppercase tracking-wider"
+                  className="mt-4 bg-primary text-primary-foreground px-8 py-4 text-lg font-bold uppercase tracking-widest"
                 >
-                  Start Project
+                  Book a Call
                 </motion.button>
               </div>
             </motion.div>
