@@ -1,14 +1,24 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Merriweather, Roboto } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from 'sonner'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const merriweather = Merriweather({ 
+  subsets: ["latin"],
+  weight: ["900"],
+  variable: "--font-merriweather"
+});
+
+const roboto = Roboto({ 
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-roboto"
+});
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'EvolvNex | Digital Growth Agency',
+  description: 'We Build Digital Growth Systems - Where Brands Become Systems',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -35,9 +45,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased">
+    <html lang="en" className="scroll-smooth">
+      <body className={`${merriweather.variable} ${roboto.variable} font-sans antialiased`}>
         {children}
+        <Toaster position="bottom-right" />
         <Analytics />
       </body>
     </html>
