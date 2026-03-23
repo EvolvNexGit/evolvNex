@@ -27,7 +27,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-6xl sm:text-8xl lg:text-[10rem] font-heading font-black uppercase tracking-tight leading-none mb-8">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black uppercase tracking-tight leading-none mb-8">
             We Build<br />
             <span className="text-primary">Digital</span> Growth<br />
             Systems
