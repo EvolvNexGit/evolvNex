@@ -16,7 +16,7 @@ const caseStudies = [
     link: "https://www.thinkwithgoogle.com/intl/en-apac/marketing-strategies/app-and-mobile/mobile-page-speed-data/",
   },
   {
-    title: "E-commerce Conversion Optimization",
+    title: "E-commerce Growth",
     category: "E-commerce",
     stat: "Shopify Guide",
     link: "https://www.shopify.com/blog/conversion-rate-optimization",

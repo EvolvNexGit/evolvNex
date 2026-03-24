@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
 import { CaseStudies } from "@/components/case-studies"
+import { WorkShowcase } from "@/components/work-showcase"
 import { WhoWeWorkWith } from "@/components/who-we-work-with"
 import { Approach } from "@/components/approach"
 import { Pricing } from "@/components/pricing"
@@ -18,6 +19,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Services />
+      <WorkShowcase />
       <CaseStudies />
       <WhoWeWorkWith />
       <Approach />
