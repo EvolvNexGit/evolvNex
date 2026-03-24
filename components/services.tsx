@@ -6,27 +6,47 @@ import { Globe, Palette, Zap, BarChart3 } from "lucide-react"
 const services = [
   {
     icon: Globe,
-    title: "Web Development",
-    description: "Custom, high-performance websites built for conversion and scale.",
-    features: ["Custom Design", "Responsive", "SEO Optimized", "Fast Loading"],
+    title: "High-Converting Websites",
+    description: "We build fast, structured websites designed to turn visitors into leads — not just look good.",
+    features: [
+      "Conversion-focused design",
+      "Mobile-first experience",
+      "SEO-ready structure",
+      "Lightning-fast performance",
+    ],
   },
   {
     icon: Palette,
-    title: "Brand Identity",
-    description: "Strategic visual identities that differentiate and resonate.",
-    features: ["Logo Design", "Brand Guidelines", "Visual Systems", "Brand Strategy"],
+    title: "Brand That Builds Trust",
+    description: "Your business needs more than a logo — we create a visual identity that makes you look credible and premium.",
+    features: [
+      "Logo & visual identity",
+      "Brand consistency",
+      "Trust-focused design",
+      "Market positioning",
+    ],
   },
   {
     icon: Zap,
-    title: "Automation",
-    description: "Intelligent workflows that eliminate manual tasks and scale operations.",
-    features: ["Process Automation", "AI Integration", "CRM Setup", "Email Flows"],
+    title: "Smart Automation Systems",
+    description: "Save time and never miss a lead with automated workflows that handle inquiries, follow-ups, and bookings.",
+    features: [
+      "WhatsApp automation",
+      "AI chatbot integration",
+      "CRM setup",
+      "Lead follow-up systems",
+    ],
   },
   {
     icon: BarChart3,
-    title: "Growth Systems",
-    description: "Data-driven infrastructure for sustainable, predictable growth.",
-    features: ["Analytics Setup", "Funnel Optimization", "Lead Generation", "Conversion Tracking"],
+    title: "Lead Generation & Analytics",
+    description: "Track what works, improve conversions, and consistently generate leads with data-driven systems.",
+    features: [
+      "Analytics setup",
+      "Funnel optimization",
+      "Lead tracking",
+      "Performance insights",
+    ],
   },
 ]
 
@@ -40,12 +60,17 @@ export function Services() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 max-w-2xl"
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">What We Do</p>
-          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
-            Our Services
+          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
+            What We Do
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
+            Systems That Bring You Customers
           </h2>
+          <p className="text-muted-foreground font-body text-sm leading-relaxed">
+            We don’t just build websites — we create systems that attract, convert, and manage your customers automatically.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -56,18 +81,24 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-card border border-border p-8 relative group hover:border-primary/50 transition-all duration-300"
+              className="bg-card border border-border p-8 relative group hover:border-primary/50 hover:scale-[1.02] transition-all duration-300"
             >
               <service.icon className="w-10 h-10 text-primary mb-6" strokeWidth={1.5} />
+              
               <h3 className="text-xl font-heading font-bold uppercase tracking-wide mb-3">
                 {service.title}
               </h3>
+
               <p className="text-muted-foreground font-body text-sm leading-relaxed mb-6">
                 {service.description}
               </p>
+
               <ul className="space-y-2">
                 {service.features.map((feature) => (
-                  <li key={feature} className="text-sm text-muted-foreground font-body flex items-center gap-2">
+                  <li
+                    key={feature}
+                    className="text-sm text-muted-foreground font-body flex items-center gap-2"
+                  >
                     <span className="w-1 h-1 bg-primary flex-shrink-0" />
                     {feature}
                   </li>
@@ -75,6 +106,16 @@ export function Services() {
               </ul>
             </motion.div>
           ))}
+        </div>
+
+        {/* Bottom Micro CTA */}
+        <div className="mt-16 text-center">
+          <p className="text-muted-foreground text-sm mb-4">
+            Everything we build is focused on one goal — helping your business get more customers.
+          </p>
+          <button className="text-primary font-bold uppercase tracking-widest text-sm hover:opacity-80 transition">
+            Book a Free Consultation →
+          </button>
         </div>
       </div>
     </section>
