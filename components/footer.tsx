@@ -1,36 +1,64 @@
 "use client"
 
 const footerLinks = {
-  Services: ["Web Development", "Brand Identity", "Automation", "Growth Systems"],
+  Services: [
+    "Web Development",
+    "Brand Identity",
+    "AI Automation",
+    "Funnels & Growth Systems",
+  ],
   Company: ["About", "Careers", "Blog", "Contact"],
   Legal: ["Privacy Policy", "Terms of Service"],
 }
 
 const socialLinks = [
-  { name: "Twitter", href: "#" },
-  { name: "LinkedIn", href: "https://www.linkedin.com/company/evolvnex/" },
-  { name: "Instagram", href: "#" },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/evolvnex/",
+  },
+  // Hide others until ready
+  // { name: "Twitter", href: "#" },
+  // { name: "Instagram", href: "#" },
 ]
 
 export function Footer() {
   return (
     <footer className="bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 py-16">
+        
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+          
           {/* Logo & Tagline */}
           <div className="col-span-2">
-            <span className="text-2xl font-black tracking-tight mb-4 block">EVOLVNEX</span>
-            <p className="text-muted-foreground font-body mb-6">
-              Where Brands Become Systems.
+            <span className="text-2xl font-black tracking-tight mb-4 block">
+              EVOLVNEX
+            </span>
+
+            <p className="text-muted-foreground font-body mb-4">
+              Where Brands Become Scalable Systems.
             </p>
-            <div className="flex gap-4">
+
+            <p className="text-sm text-muted-foreground/70 mb-6 max-w-sm">
+              We design, build, and automate digital experiences that drive growth.
+            </p>
+
+            {/* Micro CTA */}
+            <a
+              href="/contact"
+              className="text-sm text-primary font-semibold hover:underline"
+            >
+              → Book a Strategy Call
+            </a>
+
+            {/* Socials */}
+            <div className="flex gap-6 mt-6">
               {socialLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
+                  className="text-xs text-muted-foreground hover:text-primary transition-all duration-300 uppercase tracking-widest hover:-translate-y-0.5"
                 >
                   {link.name}
                 </a>
@@ -49,7 +77,7 @@ export function Footer() {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors font-body"
+                      className="text-sm text-muted-foreground hover:text-foreground transition-all duration-300 font-body hover:translate-x-1"
                     >
                       {link}
                     </a>
@@ -60,15 +88,22 @@ export function Footer() {
           ))}
         </div>
 
+        {/* Trust Line */}
+        <div className="text-center text-xs text-muted-foreground/50 mt-12">
+          Built for ambitious brands. Designed to scale.
+        </div>
+
         {/* Bottom Copyright */}
-        <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground font-body">
             © {new Date().getFullYear()} EvolvNex. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground font-body">
-            Built with precision. Designed for growth.
+
+          <p className="text-sm text-muted-foreground/70 font-body hover:text-foreground transition">
+            Engineered for performance. Built for scale.
           </p>
         </div>
+
       </div>
     </footer>
   )
