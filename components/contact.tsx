@@ -24,11 +24,25 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    toast.success("Message sent successfully! We'll get back to you soon.")
-    setFormData({ name: "", email: "", company: "", budget: "", message: "" })
+
+    try {
+      const res = await fetch("YOUR_GOOGLE_SCRIPT_URL", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (data.status === "success") {
+        toast.success("Message sent successfully! We'll get back to you soon.")
+        setFormData({ name: "", email: "", company: "", budget: "", message: "" })
+      } else {
+        toast.error("Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      toast.error("Failed to send. Check your connection.")
+    }
+
     setIsSubmitting(false)
   }
 
@@ -53,6 +67,7 @@ export function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
+          
           {/* Left - Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -156,7 +171,6 @@ export function Contact() {
               {isSubmitting ? "Sending..." : "Book Free Consultation"}
             </button>
 
-            {/* Trust line */}
             <p className="text-xs text-muted-foreground text-center">
               We typically respond within 24 hours
             </p>
