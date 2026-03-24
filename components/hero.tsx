@@ -3,10 +3,10 @@
 import { motion } from "framer-motion"
 
 const stats = [
-  { value: "120+", label: "Projects Delivered" },
+  { value: "10+", label: "Projects Delivered" },
   { value: "3.2x", label: "Avg ROI" },
-  { value: "98%", label: "Client Retention" },
-  { value: "5", label: "Years Experience" },
+  { value: "9%", label: "Client Retention" },
+  { value: "3+", label: "Years of Engineering Experience" },
 ]
 
 export function Hero() {

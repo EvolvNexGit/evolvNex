@@ -12,11 +12,11 @@ const products = [
     description: "Intelligent assistants that handle outreach, support, and scheduling autonomously.",
   },
   {
-    icon: Workflow,
-    name: "Flow Builder",
+    icon: Bot,
+    name: "AskBOT.AI",
     status: "Coming Soon",
     statusBg: "bg-foreground/10 text-foreground",
-    description: "Visual workflow automation builder for complex business processes.",
+    description: "AI-powered assistant designed to answer queries with large context window 24/7.",
   },
   {
     icon: Boxes,
