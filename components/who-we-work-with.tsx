@@ -4,12 +4,36 @@ import { motion } from "framer-motion"
 import { Rocket, TrendingUp, ShoppingCart, Building2, Briefcase, Cpu } from "lucide-react"
 
 const clients = [
-  { icon: Rocket, title: "Startups", description: "Early-stage companies ready to establish their digital presence." },
-  { icon: TrendingUp, title: "Scale-ups", description: "Growing businesses looking to automate and optimize operations." },
-  { icon: ShoppingCart, title: "E-Commerce", description: "Online stores seeking to increase conversions and streamline fulfillment." },
-  { icon: Building2, title: "B2B SaaS", description: "Software companies focused on user acquisition and retention." },
-  { icon: Briefcase, title: "Service Firms", description: "Professional services looking to digitize and scale their offerings." },
-  { icon: Cpu, title: "Tech Companies", description: "Technology businesses ready to amplify their market presence." },
+  {
+    icon: Rocket,
+    title: "Startups",
+    description: "Early-stage startups ready to launch fast and build a strong digital presence that attracts their first customers.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Scale-ups",
+    description: "Growing businesses looking to automate operations, capture more leads, and scale efficiently.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "E-Commerce",
+    description: "Online brands focused on increasing conversions, improving user experience, and driving more sales.",
+  },
+  {
+    icon: Building2,
+    title: "B2B SaaS",
+    description: "SaaS companies aiming to improve user acquisition, onboarding, and long-term retention.",
+  },
+  {
+    icon: Briefcase,
+    title: "Service Firms",
+    description: "Agencies and service providers looking to generate consistent leads and streamline client management.",
+  },
+  {
+    icon: Cpu,
+    title: "Tech Companies",
+    description: "Tech-driven businesses ready to enhance their digital presence and scale with smarter systems.",
+  },
 ]
 
 export function WhoWeWorkWith() {
@@ -20,12 +44,17 @@ export function WhoWeWorkWith() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 max-w-2xl"
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">Our Clients</p>
-          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
-            Who We Work With
+          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
+            Who We Help Grow
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
+            Businesses Ready to Scale
           </h2>
+          <p className="text-muted-foreground font-body text-sm leading-relaxed">
+            We work with businesses that are serious about growth — not just having a website.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -36,12 +65,14 @@ export function WhoWeWorkWith() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-background border border-border p-8 hover:border-primary/50 transition-colors group"
+              className="bg-background border border-border p-8 hover:border-primary/50 hover:scale-[1.02] transition-all duration-300 group"
             >
               <client.icon className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
+              
               <h3 className="text-lg font-heading font-bold uppercase tracking-wide mb-2">
                 {client.title}
               </h3>
+
               <p className="text-sm text-muted-foreground font-body leading-relaxed">
                 {client.description}
               </p>
