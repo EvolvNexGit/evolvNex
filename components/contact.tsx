@@ -6,9 +6,9 @@ import { Mail, Phone, MapPin } from "lucide-react"
 import { toast } from "sonner"
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "hello@evolvnex.com" },
-  { icon: Phone, label: "Phone", value: "+91 98765 43210" },
-  { icon: MapPin, label: "Location", value: "Mumbai, India" },
+  { icon: Mail, label: "Email", value: "team@evolvnex.com" },
+  { icon: Phone, label: "Phone", value: "+91 8369902721 / +91 8292759774" },
+  { icon: MapPin, label: "Location", value: "Delhi, India" },
 ]
 
 export function Contact() {
@@ -25,7 +25,6 @@ export function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000))
     
     toast.success("Message sent successfully! We'll get back to you soon.")
@@ -40,12 +39,17 @@ export function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 max-w-2xl"
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">Get In Touch</p>
-          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
-            Contact Us
+          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
+            Get In Touch
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
+            Let’s Grow Your Business
           </h2>
+          <p className="text-muted-foreground font-body text-sm leading-relaxed">
+            Looking to get more leads, bookings, or customers? Let’s discuss your business and build a system that actually delivers results.
+          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
@@ -55,10 +59,6 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg text-muted-foreground font-body leading-relaxed mb-12">
-              Ready to transform your brand into a scalable growth system? Let's discuss your project and explore how we can help you achieve your goals.
-            </p>
-            
             <div className="space-y-6">
               {contactInfo.map((item, index) => (
                 <div key={index} className="flex items-center gap-4">
@@ -108,6 +108,7 @@ export function Contact() {
                 />
               </div>
             </div>
+
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs uppercase tracking-widest mb-2 font-bold">Company</label>
@@ -127,12 +128,14 @@ export function Contact() {
                   className="w-full bg-background border border-border px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-body"
                 >
                   <option value="">Select budget range</option>
-                  <option value="15k-30k">₹15,000 - ₹30,000</option>
-                  <option value="30k-50k">₹30,000 - ₹50,000</option>
-                  <option value="50k+">₹50,000+</option>
+                  <option value="10k-20k">₹10,000 - ₹20,000</option>
+                  <option value="20k-40k">₹20,000 - ₹40,000</option>
+                  <option value="40k-70k">₹40,000 - ₹70,000</option>
+                  <option value="70k+">₹70,000+</option>
                 </select>
               </div>
             </div>
+
             <div>
               <label className="block text-xs uppercase tracking-widest mb-2 font-bold">Message *</label>
               <textarea
@@ -141,16 +144,22 @@ export function Contact() {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full bg-background border border-border px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none font-body"
-                placeholder="Tell us about your project..."
+                placeholder="Tell us about your business and what you want to achieve..."
               />
             </div>
+
             <button
               type="submit"
               disabled={isSubmitting}
               className="w-full bg-primary text-primary-foreground py-4 text-sm font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
+              {isSubmitting ? "Sending..." : "Book Free Consultation"}
             </button>
+
+            {/* Trust line */}
+            <p className="text-xs text-muted-foreground text-center">
+              We typically respond within 24 hours
+            </p>
           </motion.form>
         </div>
       </div>
