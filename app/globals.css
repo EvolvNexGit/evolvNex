@@ -140,6 +140,36 @@
   width: max-content;
 }
 
+/* Work Showcase Marquee - Left to Right */
+@keyframes work-marquee-ltr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.work-marquee-ltr {
+  animation: work-marquee-ltr 30s linear infinite;
+  width: max-content;
+}
+
+/* Work Showcase Marquee - Right to Left */
+@keyframes work-marquee-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.work-marquee-rtl {
+  animation: work-marquee-rtl 30s linear infinite;
+  width: max-content;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
