@@ -7,7 +7,7 @@ const footerLinks = {
     "AI Automation",
     "Funnels & Growth Systems",
   ],
-  Company: ["About", "Careers", "Blog", "Contact"],
+  Company: ["About", "Blog", "Contact"], // ❌ Careers removed
   Legal: ["Privacy Policy", "Terms of Service"],
 }
 
@@ -16,9 +16,6 @@ const socialLinks = [
     name: "LinkedIn",
     href: "https://www.linkedin.com/company/evolvnex/",
   },
-  // Hide others until ready
-  // { name: "Twitter", href: "#" },
-  // { name: "Instagram", href: "#" },
 ]
 
 export function Footer() {
@@ -42,7 +39,7 @@ export function Footer() {
               We design, build, and automate digital experiences that drive growth.
             </p>
 
-            {/* Micro CTA */}
+            {/* ✅ ONLY CLICKABLE CTA */}
             <a
               href="/contact"
               className="text-sm text-primary font-semibold hover:underline"
@@ -50,7 +47,7 @@ export function Footer() {
               → Book a Strategy Call
             </a>
 
-            {/* Socials */}
+            {/* Socials (still clickable) */}
             <div className="flex gap-6 mt-6">
               {socialLinks.map((link) => (
                 <a
@@ -58,7 +55,7 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-muted-foreground hover:text-primary transition-all duration-300 uppercase tracking-widest hover:-translate-y-0.5"
+                  className="text-xs text-muted-foreground hover:text-primary transition-all duration-300 uppercase tracking-widest"
                 >
                   {link.name}
                 </a>
@@ -66,7 +63,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Link Columns */}
+          {/* ❌ Non-clickable Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
               <h4 className="font-heading font-bold text-sm uppercase tracking-widest mb-4">
@@ -74,13 +71,11 @@ export function Footer() {
               </h4>
               <ul className="space-y-3">
                 {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-all duration-300 font-body hover:translate-x-1"
-                    >
-                      {link}
-                    </a>
+                  <li
+                    key={link}
+                    className="text-sm text-muted-foreground font-body"
+                  >
+                    {link}
                   </li>
                 ))}
               </ul>
@@ -93,13 +88,13 @@ export function Footer() {
           Built for ambitious brands. Designed to scale.
         </div>
 
-        {/* Bottom Copyright */}
+        {/* Bottom */}
         <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground font-body">
             © {new Date().getFullYear()} EvolvNex. All rights reserved.
           </p>
 
-          <p className="text-sm text-muted-foreground/70 font-body hover:text-foreground transition">
+          <p className="text-sm text-muted-foreground/70 font-body">
             Engineered for performance. Built for scale.
           </p>
         </div>
