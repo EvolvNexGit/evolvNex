@@ -19,6 +19,7 @@ export function Contact() {
     budget: "",
     message: "",
   })
+
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,19 +27,32 @@ export function Contact() {
     setIsSubmitting(true)
 
     try {
-      const res = await fetch("YOUR_GOOGLE_SCRIPT_URL", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      })
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbxCOLa0Nyg0JNQR5rM3tMTKMYE4oWx-q0HdYz5LCxwgtu72t2_-loblv3tegx6e9Vxj/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      )
 
       const data = await res.json()
 
       if (data.status === "success") {
         toast.success("Message sent successfully! We'll get back to you soon.")
-        setFormData({ name: "", email: "", company: "", budget: "", message: "" })
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          budget: "",
+          message: "",
+        })
       } else {
         toast.error("Something went wrong. Please try again.")
       }
+
     } catch (error) {
       toast.error("Failed to send. Check your connection.")
     }
@@ -49,6 +63,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-32 bg-card">
       <div className="max-w-7xl mx-auto px-6">
+        
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +83,7 @@ export function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-16">
           
-          {/* Left - Contact Info */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -77,96 +92,79 @@ export function Contact() {
             <div className="space-y-6">
               {contactInfo.map((item, index) => (
                 <div key={index} className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-background border border-border flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-background border border-border flex items-center justify-center">
                     <item.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
                   </div>
                   <div>
                     <div className="text-xs text-muted-foreground uppercase tracking-widest mb-1">
                       {item.label}
                     </div>
-                    <div className="font-body">{item.value}</div>
+                    <div>{item.value}</div>
                   </div>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right - Contact Form */}
+          {/* Form */}
           <motion.form
+            onSubmit={handleSubmit}
+            className="space-y-6"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            onSubmit={handleSubmit}
-            className="space-y-6"
           >
             <div className="grid sm:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-xs uppercase tracking-widest mb-2 font-bold">Name *</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-background border border-border px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-body"
-                  placeholder="John Doe"
-                />
-              </div>
-              <div>
-                <label className="block text-xs uppercase tracking-widest mb-2 font-bold">Email *</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-background border border-border px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-body"
-                  placeholder="john@company.com"
-                />
-              </div>
+              <input
+                required
+                placeholder="Name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="input"
+              />
+              <input
+                required
+                type="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="input"
+              />
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-xs uppercase tracking-widest mb-2 font-bold">Company</label>
-                <input
-                  type="text"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full bg-background border border-border px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-body"
-                  placeholder="Company Name"
-                />
-              </div>
-              <div>
-                <label className="block text-xs uppercase tracking-widest mb-2 font-bold">Budget</label>
-                <select
-                  value={formData.budget}
-                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className="w-full bg-background border border-border px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors font-body"
-                >
-                  <option value="">Select budget range</option>
-                  <option value="10k-20k">₹10,000 - ₹20,000</option>
-                  <option value="20k-40k">₹20,000 - ₹40,000</option>
-                  <option value="40k-70k">₹40,000 - ₹70,000</option>
-                  <option value="70k+">₹70,000+</option>
-                </select>
-              </div>
+              <input
+                placeholder="Company"
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                className="input"
+              />
+              <select
+                value={formData.budget}
+                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                className="input"
+              >
+                <option value="">Budget</option>
+                <option value="10k-20k">₹10k–₹20k</option>
+                <option value="20k-40k">₹20k–₹40k</option>
+                <option value="40k-70k">₹40k–₹70k</option>
+                <option value="70k+">₹70k+</option>
+              </select>
             </div>
 
-            <div>
-              <label className="block text-xs uppercase tracking-widest mb-2 font-bold">Message *</label>
-              <textarea
-                required
-                rows={5}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-background border border-border px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none font-body"
-                placeholder="Tell us about your business and what you want to achieve..."
-              />
-            </div>
+            <textarea
+              required
+              rows={5}
+              placeholder="Tell us about your project..."
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="input"
+            />
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-primary text-primary-foreground py-4 text-sm font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors disabled:opacity-50"
+              className="w-full bg-primary text-white py-4 font-bold uppercase tracking-widest disabled:opacity-50"
             >
               {isSubmitting ? "Sending..." : "Book Free Consultation"}
             </button>
@@ -175,6 +173,7 @@ export function Contact() {
               We typically respond within 24 hours
             </p>
           </motion.form>
+
         </div>
       </div>
     </section>
