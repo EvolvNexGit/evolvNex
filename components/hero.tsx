@@ -6,7 +6,7 @@ const stats = [
   { value: "10+", label: "Projects Delivered" },
   { value: "3.2x", label: "Avg ROI" },
   { value: "9%", label: "Client Retention" },
-  { value: "3+", label: "Years of Engineering Experience" },
+  { value: "3+", label: "Yrs of Engineering Exp" },
 ]
 
 export function Hero() {
