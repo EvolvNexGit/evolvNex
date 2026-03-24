@@ -62,18 +62,23 @@ export function Pricing() {
   return (
     <section id="pricing" className="py-32">
       <div className="max-w-7xl mx-auto px-6">
+
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">Pricing</p>
+          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
+            Pricing
+          </p>
           <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
             Investment Plans
           </h2>
         </motion.div>
 
+        {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-6">
           {tiers.map((tier, index) => (
             <motion.div
@@ -82,24 +87,44 @@ export function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`relative p-8 border bg-card ${
-                tier.featured ? "border-primary" : "border-border"
-              }`}
+
+              whileHover={{
+                scale: 1.04,
+                y: -6,
+              }}
+
+              className={`relative p-8 border bg-card transition-all duration-300 cursor-pointer group
+                ${
+                  tier.featured
+                    ? "border-primary shadow-[0_0_25px_rgba(255,0,0,0.15)]"
+                    : "border-border hover:border-primary/60 hover:shadow-[0_0_20px_rgba(255,0,0,0.08)]"
+                }
+              `}
             >
+
+              {/* Featured Badge */}
               {tier.featured && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs uppercase tracking-widest font-bold px-4 py-1">
                   Most Popular
                 </div>
               )}
 
-              <h3 className="text-lg font-heading font-bold uppercase tracking-widest mb-2">
+              {/* Title */}
+              <h3 className="text-lg font-heading font-bold uppercase tracking-widest mb-2 transition-colors group-hover:text-primary">
                 {tier.name}
               </h3>
+
+              {/* Price */}
               <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-4xl font-heading font-black">₹{tier.price}</span>
-                <span className="text-sm text-muted-foreground">{tier.unit}</span>
+                <span className="text-4xl font-heading font-black">
+                  ₹{tier.price}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {tier.unit}
+                </span>
               </div>
 
+              {/* Features */}
               <ul className="space-y-3 mb-8">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-sm font-body">
@@ -109,6 +134,7 @@ export function Pricing() {
                 ))}
               </ul>
 
+              {/* Button */}
               <button
                 onClick={scrollToContact}
                 className={`w-full py-3 text-sm font-bold uppercase tracking-widest transition-colors ${
