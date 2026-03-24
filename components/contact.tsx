@@ -27,18 +27,23 @@ export function Contact() {
     setIsSubmitting(true)
 
     try {
-      const res = await fetch(
+      const response = await fetch(
         "https://script.google.com/macros/s/AKfycbxCOLa0Nyg0JNQR5rM3tMTKMYE4oWx-q0HdYz5LCxwgtu72t2_-loblv3tegx6e9Vxj/exec",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(formData), // no headers (important)
         }
       )
 
-      const data = await res.json()
+      const text = await response.text()
+
+      let data
+      try {
+        data = JSON.parse(text)
+      } catch {
+        console.error("Invalid JSON response:", text)
+        throw new Error("Invalid response from server")
+      }
 
       if (data.status === "success") {
         toast.success("Message sent successfully! We'll get back to you soon.")
@@ -50,10 +55,12 @@ export function Contact() {
           message: "",
         })
       } else {
+        console.error("Script error:", data)
         toast.error("Something went wrong. Please try again.")
       }
 
     } catch (error) {
+      console.error("Submission error:", error)
       toast.error("Failed to send. Check your connection.")
     }
 
@@ -63,7 +70,8 @@ export function Contact() {
   return (
     <section id="contact" className="py-32 bg-card">
       <div className="max-w-7xl mx-auto px-6">
-        
+
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +90,7 @@ export function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
-          
+
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -114,35 +122,40 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
+
+            {/* Name + Email */}
             <div className="grid sm:grid-cols-2 gap-6">
               <input
                 required
                 placeholder="Name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="input"
+                className="w-full bg-background border border-border px-4 py-3 focus:border-primary focus:outline-none"
               />
+
               <input
                 required
                 type="email"
                 placeholder="Email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="input"
+                className="w-full bg-background border border-border px-4 py-3 focus:border-primary focus:outline-none"
               />
             </div>
 
+            {/* Company + Budget */}
             <div className="grid sm:grid-cols-2 gap-6">
               <input
                 placeholder="Company"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className="input"
+                className="w-full bg-background border border-border px-4 py-3 focus:border-primary focus:outline-none"
               />
+
               <select
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className="input"
+                className="w-full bg-background border border-border px-4 py-3 focus:border-primary focus:outline-none"
               >
                 <option value="">Budget</option>
                 <option value="10k-20k">₹10k–₹20k</option>
@@ -152,15 +165,16 @@ export function Contact() {
               </select>
             </div>
 
+            {/* Message (Optional) */}
             <textarea
-              required
               rows={5}
-              placeholder="Tell us about your project..."
+              placeholder="Tell us about your project... (optional)"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="input"
+              className="w-full bg-background border border-border px-4 py-3 focus:border-primary focus:outline-none resize-none"
             />
 
+            {/* Submit */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -169,11 +183,12 @@ export function Contact() {
               {isSubmitting ? "Sending..." : "Book Free Consultation"}
             </button>
 
+            {/* Trust line */}
             <p className="text-xs text-muted-foreground text-center">
               We typically respond within 24 hours
             </p>
-          </motion.form>
 
+          </motion.form>
         </div>
       </div>
     </section>
