@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block unnecessary or sensitive paths (optional)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dashboard/
+
+# Sitemap location
+Sitemap: https://www.evolvnex.com/sitemap.xml
