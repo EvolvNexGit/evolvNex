@@ -53,7 +53,7 @@ export function WhoWeWorkWith() {
             Businesses Ready to Scale
           </h2>
           <p className="text-muted-foreground font-body text-sm leading-relaxed">
-            We work with businesses that are serious about growth — not just having a website.
+            We work with businesses that are serious about growth - not just having a website.
           </p>
         </motion.div>
 

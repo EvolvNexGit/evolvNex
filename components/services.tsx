@@ -7,7 +7,7 @@ const services = [
   {
     icon: Globe,
     title: "High-Converting Websites",
-    description: "We build fast, structured websites designed to turn visitors into leads — not just look good.",
+    description: "We build fast, structured websites designed to turn visitors into leads - not just look good.",
     features: [
       "Conversion-focused design",
       "Mobile-first experience",
@@ -18,7 +18,7 @@ const services = [
   {
     icon: Palette,
     title: "Brand That Builds Trust",
-    description: "Your business needs more than a logo — we create a visual identity that makes you look credible and premium.",
+    description: "Your business needs more than a logo - we create a visual identity that makes you look credible and premium.",
     features: [
       "Logo & visual identity",
       "Brand consistency",
@@ -69,7 +69,7 @@ export function Services() {
             Systems That Bring You Customers
           </h2>
           <p className="text-muted-foreground font-body text-sm leading-relaxed">
-            We don’t just build websites — we create systems that attract, convert, and manage your customers automatically.
+            We don’t just build websites - we create systems that attract, convert, and manage your customers automatically.
           </p>
         </motion.div>
 
@@ -111,7 +111,7 @@ export function Services() {
         {/* Bottom Micro CTA */}
         <div className="mt-16 text-center">
           <p className="text-muted-foreground text-sm mb-4">
-            Everything we build is focused on one goal — helping your business get more customers.
+            Everything we build is focused on one goal - helping your business get more customers.
           </p>
           <button className="text-primary font-bold uppercase tracking-widest text-sm hover:opacity-80 transition">
             Book a Free Consultation →
