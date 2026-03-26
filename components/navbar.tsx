@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 const navLinks = [
   { name: "Services", href: "#services" },
@@ -44,12 +45,14 @@ export function Navbar() {
           <a
             href="#"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-1.5"
+            className="flex items-center gap-2"
           >
-            <img
+            <Image
               src="/symbol.png"
               alt="Evolvnex Logo"
-              className="h-7 w-auto object-contain"
+              width={28}
+              height={28}
+              priority
             />
             <span className="text-2xl font-black tracking-tight">
               EVOLV<span className="text-[#FF3B3B]">NEX</span>
@@ -85,7 +88,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -104,11 +107,12 @@ export function Navbar() {
               <div className="flex items-center justify-between px-6 h-20">
                 
                 {/* Mobile Logo */}
-                <div className="flex items-center gap-1.5">
-                  <img
+                <div className="flex items-center gap-2">
+                  <Image
                     src="/symbol.png"
                     alt="Evolvnex Logo"
-                    className="h-7 w-auto object-contain"
+                    width={28}
+                    height={28}
                   />
                   <span className="text-2xl font-black tracking-tight">
                     EVOLV<span className="text-[#FF3B3B]">NEX</span>
