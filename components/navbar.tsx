@@ -39,9 +39,21 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          
           {/* Logo */}
-          <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <span className="text-2xl font-black tracking-tight">EVOLVNEX</span>
+          <a
+            href="#"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-1.5"
+          >
+            <img
+              src="/symbol.png"
+              alt="Evolvnex Logo"
+              className="h-7 w-auto object-contain"
+            />
+            <span className="text-2xl font-black tracking-tight">
+              EVOLV<span className="text-[#FF3B3B]">NEX</span>
+            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -90,7 +102,19 @@ export function Navbar() {
               className="flex flex-col h-full"
             >
               <div className="flex items-center justify-between px-6 h-20">
-                <span className="text-2xl font-black tracking-tight">EVOLVNEX</span>
+                
+                {/* Mobile Logo */}
+                <div className="flex items-center gap-1.5">
+                  <img
+                    src="/symbol.png"
+                    alt="Evolvnex Logo"
+                    className="h-7 w-auto object-contain"
+                  />
+                  <span className="text-2xl font-black tracking-tight">
+                    EVOLV<span className="text-[#FF3B3B]">NEX</span>
+                  </span>
+                </div>
+
                 <button onClick={() => setIsMobileMenuOpen(false)}>
                   <X className="h-7 w-7" />
                 </button>
