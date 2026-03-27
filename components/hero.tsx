@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 const stats = [
   { value: "10+", label: "Projects Delivered" },
   { value: "3.2x", label: "Avg ROI Delivered" },
+  { value: "5+", label: "Industries Covered" },
   { value: "7 Days", label: "Go-Live Guarantee" },,
 ]
 
