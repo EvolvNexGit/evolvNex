@@ -6,7 +6,7 @@ import { Check } from "lucide-react"
 const tiers = [
   {
     name: "Starter Presence",
-    price: "20,000",
+    price: "21,999",
     unit: "one-time",
     featured: false,
     features: [
@@ -21,7 +21,7 @@ const tiers = [
   },
   {
     name: "Growth Engine",
-    price: "35,000",
+    price: "29,999",
     unit: "one-time",
     featured: true,
     features: [
@@ -36,8 +36,8 @@ const tiers = [
   },
   {
     name: "Authority System",
-    price: "50,000",
-    unit: "starting",
+    price: "49,999",
+    unit: "onwards",
     featured: false,
     features: [
       "Everything in Growth",

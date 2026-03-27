@@ -4,9 +4,8 @@ import { motion } from "framer-motion"
 
 const stats = [
   { value: "10+", label: "Projects Delivered" },
-  { value: "3.2x", label: "Avg ROI" },
-  { value: "97%", label: "Client Retention" },
-  { value: "3+ yrs", label: "Engineering Experience" },
+  { value: "3.2x", label: "Avg ROI Delivered" },
+  { value: "7 Days", label: "Go-Live Guarantee" },,
 ]
 
 export function Hero() {
@@ -18,7 +17,7 @@ export function Hero() {
   }
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
+    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-28">
       <div className="absolute inset-0 diagonal-stripes" />
       
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
@@ -27,14 +26,16 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black uppercase tracking-tight leading-none mb-8">
+          <h1 className="mt-6 text-3xl sm:text-5xl lg:text-6xl font-heading font-black uppercase tracking-tight leading-[0.9] mb-8">
             We Build<br />
             <span className="text-primary">Digital</span> Growth<br />
             Systems
           </h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground font-body mb-12 max-w-2xl">
+
+          <p className="text-xl sm:text-2xl text-muted-foreground font-body mb-14 max-w-2xl">
             Where Brands Become Systems. We transform ambitious brands into scalable, automated growth engines.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => scrollToSection("#work")}
@@ -42,6 +43,7 @@ export function Hero() {
             >
               View Our Work
             </button>
+
             <button
               onClick={() => scrollToSection("#contact")}
               className="bg-primary text-primary-foreground px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors"
