@@ -44,17 +44,17 @@ function ProjectCard({
         }}
       />
 
-      {/* Vignette + Overlay */}
+      {/* Overlay Container */}
       <div className="absolute inset-0 flex items-center justify-center">
 
-        {/* Vignette Effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.6))]" />
+        {/* Subtle Edge-only Vignette */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_80%,rgba(0,0,0,0.2)_100%)]" />
 
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+        {/* Light Hover Overlay */}
+        <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-300" />
 
         {/* Button */}
-        <span className="relative z-10 text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 px-4 py-2 border border-white/30 backdrop-blur">
+        <span className="relative z-10 text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 border border-white/20 backdrop-blur">
           View Project
         </span>
       </div>
