@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useState } from "react"
 
 const topRowProjects = [
   { id: 1, name: "24K Springs Salon", image: "/images/work/24k-springs-salon.png", url: "#" },
@@ -26,17 +27,28 @@ function ProjectCard({
 }: {
   project: { id: number; name: string; image: string; url: string }
 }) {
+  const [error, setError] = useState(false)
+
   return (
     <Link
       href={project.url}
-      className="relative flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-card"
+      className="relative flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-gray-200"
     >
-      <Image
-        src={project.image}
-        alt={project.name}
-        fill
-        className="object-cover"
-      />
+      {!error ? (
+        <Image
+          src={project.image}
+          alt={project.name}
+          fill
+          unoptimized
+          priority
+          className="object-cover"
+          onError={() => setError(true)}
+        />
+      ) : (
+        <div className="flex items-center justify-center w-full h-full text-sm text-black">
+          Image not found
+        </div>
+      )}
     </Link>
   )
 }
