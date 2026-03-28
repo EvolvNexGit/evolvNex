@@ -39,7 +39,7 @@ function ProjectCard({
       />
 
       {/* Subtle Edge Vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_78%,rgba(0,0,0,0.2)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_65%,rgba(0,0,0,0.45)_100%)]" />
 
       {/* Hover CTA */}
       <div className="absolute inset-0 flex items-center justify-center">
