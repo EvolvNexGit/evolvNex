@@ -31,12 +31,11 @@ export function Contact() {
         "https://script.google.com/macros/s/AKfycbxCOLa0Nyg0JNQR5rM3tMTKMYE4oWx-q0HdYz5LCxwgtu72t2_-loblv3tegx6e9Vxj/exec",
         {
           method: "POST",
-          body: JSON.stringify(formData), // no headers (important)
+          body: JSON.stringify(formData),
         }
       )
 
       const text = await response.text()
-
       let data
       try {
         data = JSON.parse(text)
@@ -58,7 +57,6 @@ export function Contact() {
         console.error("Script error:", data)
         toast.error("Something went wrong. Please try again.")
       }
-
     } catch (error) {
       console.error("Submission error:", error)
       toast.error("Failed to send. Check your connection.")
@@ -107,7 +105,32 @@ export function Contact() {
                     <div className="text-xs text-muted-foreground uppercase tracking-widest mb-1">
                       {item.label}
                     </div>
-                    <div>{item.value}</div>
+                    <div className="flex flex-col gap-1">
+                      {item.label === "Email" && (
+                        <a
+                          href={`mailto:${item.value}`}
+                          className="text-primary hover:underline"
+                        >
+                          {item.value}
+                        </a>
+                      )}
+
+                      {item.label === "Phone" &&
+                        item.value.split("/").map((num, i) => (
+                          <a
+                            key={i}
+                            href={`tel:${num.replace(/\s/g, "")}`}
+                            className="text-primary hover:underline"
+                          >
+                            {num.trim()}
+                          </a>
+                        ))
+                      }
+
+                      {item.label !== "Email" && item.label !== "Phone" && (
+                        <span>{item.value}</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
