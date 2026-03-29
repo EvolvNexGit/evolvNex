@@ -7,7 +7,7 @@ import { toast } from "sonner"
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "team@evolvnex.com" },
-  { icon: Phone, label: "Phone", value: "+91 8369902721 / +91 8292759774" },
+  { icon: Phone, label: "Phone", value: "+91 9960083547 / +91 9294975963" },
   { icon: MapPin, label: "Location", value: "Delhi, India" },
 ]
 
