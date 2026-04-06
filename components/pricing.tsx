@@ -89,15 +89,17 @@ export function Pricing() {
               transition={{ delay: index * 0.1 }}
 
               whileHover={{
-                scale: 1.04,
-                y: -6,
+                scale: 1.03,
+                y: -4,
+                transition: { duration: 0.12 }
               }}
 
-              className={`relative p-8 border bg-card transition-all duration-300 cursor-pointer group
+              className={`relative p-8 border bg-card cursor-pointer group
+                transition-[border,box-shadow,transform] duration-100 ease-out
                 ${
                   tier.featured
-                    ? "border-primary shadow-[0_0_25px_rgba(255,0,0,0.15)]"
-                    : "border-border hover:border-primary/60 hover:shadow-[0_0_20px_rgba(255,0,0,0.08)]"
+                    ? "border-primary shadow-[0_0_20px_rgba(255,0,0,0.18)]"
+                    : "border-border hover:border-primary/70 hover:shadow-[0_0_15px_rgba(255,0,0,0.12)]"
                 }
               `}
             >
@@ -110,7 +112,7 @@ export function Pricing() {
               )}
 
               {/* Title */}
-              <h3 className="text-lg font-heading font-bold uppercase tracking-widest mb-2 transition-colors group-hover:text-primary">
+              <h3 className="text-lg font-heading font-bold uppercase tracking-widest mb-2 transition-colors duration-100 group-hover:text-primary">
                 {tier.name}
               </h3>
 
@@ -137,7 +139,7 @@ export function Pricing() {
               {/* Button */}
               <button
                 onClick={scrollToContact}
-                className={`w-full py-3 text-sm font-bold uppercase tracking-widest transition-colors ${
+                className={`w-full py-3 text-sm font-bold uppercase tracking-widest transition-colors duration-100 ${
                   tier.featured
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "border border-foreground text-foreground hover:bg-foreground hover:text-background"
