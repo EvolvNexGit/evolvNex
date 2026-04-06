@@ -37,6 +37,7 @@ export function Approach() {
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
+          
           {/* Left - Sticky Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -44,7 +45,9 @@ export function Approach() {
             viewport={{ once: true }}
             className="lg:sticky lg:top-32"
           >
-            <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">How We Work</p>
+            <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
+              How We Work
+            </p>
             <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-6">
               Our Approach
             </h2>
@@ -62,12 +65,18 @@ export function Approach() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-card border border-border p-8 relative group hover:border-primary/50 transition-all duration-300"
+                className="bg-card border border-border p-8 relative group hover:border-primary/50 transition-all duration-200"
               >
                 <div className="flex items-start gap-6">
+                  
+                  {/* Number */}
                   <div className="flex-shrink-0">
-                    <span className="text-5xl font-heading font-black text-primary/20">{step.number}</span>
+                    <span className="text-5xl font-heading font-black text-primary/20 group-hover:text-primary/50 transition-all duration-150 ease-out group-hover:scale-105 inline-block">
+                      {step.number}
+                    </span>
                   </div>
+
+                  {/* Content */}
                   <div>
                     <div className="flex items-center gap-3 mb-3">
                       <step.icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
@@ -79,10 +88,12 @@ export function Approach() {
                       {step.description}
                     </p>
                   </div>
+
                 </div>
               </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
