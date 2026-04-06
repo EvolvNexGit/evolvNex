@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import Link from "next/link"
+import Image from "next/image"
 
 const topRowProjects = [
   { id: 5, name: "K Fitness", image: "/images/work/k-fitness.png", url: "#" },
@@ -21,6 +22,36 @@ const bottomRowProjects = [
   { id: 7, name: "Latelier One", image: "/images/work/latelier-one.png", url: "#" },
 ]
 
+function ProjectCard({
+  project,
+  onClick,
+}: {
+  project: { id: number; name: string; image: string; url: string }
+  onClick: (img: string) => void
+}) {
+  return (
+    <div
+      onClick={() => onClick(project.image)}
+      className="group relative flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-card cursor-pointer"
+    >
+      <Image
+        src={project.image}
+        alt={project.name}
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_65%,rgba(0,0,0,0.45)_100%)]" />
+
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 border border-white/20 backdrop-blur">
+          View Project
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export function WorkShowcase() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
@@ -39,64 +70,58 @@ export function WorkShowcase() {
       </div>
 
       {/* Top Row */}
-      <div className="relative mb-8 overflow-hidden group">
-        <div className="work-marquee-ltr flex gap-8 group-hover:[animation-play-state:paused]">
+      <div
+        className="relative mb-8"
+        onMouseEnter={(e) => {
+          const el = e.currentTarget.querySelector('.marquee')
+          if (el) (el as HTMLElement).style.animationPlayState = 'paused'
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget.querySelector('.marquee')
+          if (el) (el as HTMLElement).style.animationPlayState = 'running'
+        }}
+      >
+        <div className="work-marquee-ltr marquee flex gap-8">
           {[...topRowProjects, ...topRowProjects].map((project, index) => (
-            <div
+            <ProjectCard
               key={`top-${project.id}-${index}`}
-              onClick={() => setSelectedImage(project.image)}
-              className="cursor-pointer flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-card group"
-            >
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 border border-white/20 backdrop-blur">
-                  View Project
-                </span>
-              </div>
-            </div>
+              project={project}
+              onClick={setSelectedImage}
+            />
           ))}
         </div>
       </div>
 
       {/* Bottom Row */}
-      <div className="relative overflow-hidden group">
-        <div className="work-marquee-rtl flex gap-8 group-hover:[animation-play-state:paused]">
+      <div
+        className="relative"
+        onMouseEnter={(e) => {
+          const el = e.currentTarget.querySelector('.marquee')
+          if (el) (el as HTMLElement).style.animationPlayState = 'paused'
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget.querySelector('.marquee')
+          if (el) (el as HTMLElement).style.animationPlayState = 'running'
+        }}
+      >
+        <div className="work-marquee-rtl marquee flex gap-8">
           {[...bottomRowProjects, ...bottomRowProjects].map((project, index) => (
-            <div
+            <ProjectCard
               key={`bottom-${project.id}-${index}`}
-              onClick={() => setSelectedImage(project.image)}
-              className="cursor-pointer flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-card group"
-            >
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 border border-white/20 backdrop-blur">
-                  View Project
-                </span>
-              </div>
-            </div>
+              project={project}
+              onClick={setSelectedImage}
+            />
           ))}
         </div>
       </div>
 
-      {/* 🔍 Lightbox */}
+      {/* Lightbox */}
       {selectedImage && (
         <div
+          className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center"
           onClick={() => setSelectedImage(null)}
-          className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center p-6"
         >
-          <div className="relative w-full max-w-5xl h-[70vh]">
+          <div className="relative w-[90vw] h-[80vh]">
             <Image
               src={selectedImage}
               alt="Preview"
