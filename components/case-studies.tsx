@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { motion } from "framer-motion"
 
@@ -35,7 +35,6 @@ const caseStudies = [
   },
 ]
 
-// Triple for seamless loop
 const marqueeItems = [...caseStudies, ...caseStudies, ...caseStudies]
 
 export function CaseStudies() {
@@ -58,7 +57,17 @@ export function CaseStudies() {
       </div>
 
       {/* Marquee */}
-      <div className="overflow-hidden">
+      <div
+        className="overflow-hidden"
+        onMouseEnter={(e) => {
+          const el = e.currentTarget.querySelector('.case-marquee')
+          if (el) (el as HTMLElement).style.animationPlayState = 'paused'
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget.querySelector('.case-marquee')
+          if (el) (el as HTMLElement).style.animationPlayState = 'running'
+        }}
+      >
         <div className="case-marquee flex">
           {marqueeItems.map((study, index) => (
             <a
@@ -68,23 +77,28 @@ export function CaseStudies() {
               rel="noopener noreferrer"
               className="flex-shrink-0 w-[400px] mx-3 group"
             >
-              <div className="bg-background border border-border p-8 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
+              {/* FIXED HEIGHT CARD */}
+              <div className="bg-background border border-border p-8 h-[260px] flex flex-col justify-between hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
                 
-                <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-bold mb-6 bg-primary text-primary-foreground">
-                  {study.category}
-                </span>
+                <div>
+                  <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-bold mb-4 bg-primary text-primary-foreground">
+                    {study.category}
+                  </span>
 
-                <h3 className="text-2xl font-heading font-bold uppercase tracking-wide mb-3 group-hover:text-primary transition">
-                  {study.title}
-                </h3>
+                  <h3 className="text-xl font-heading font-bold uppercase tracking-wide mb-2 group-hover:text-primary transition line-clamp-2">
+                    {study.title}
+                  </h3>
+                </div>
 
-                <p className="text-primary font-bold text-lg">
-                  {study.stat}
-                </p>
+                <div>
+                  <p className="text-primary font-bold text-lg">
+                    {study.stat}
+                  </p>
 
-                <p className="text-xs text-muted-foreground mt-4 group-hover:text-primary transition">
-                  → Read Insight
-                </p>
+                  <p className="text-xs text-muted-foreground mt-2 group-hover:text-primary transition">
+                    → Read Insight
+                  </p>
+                </div>
 
               </div>
             </a>
