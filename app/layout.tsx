@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
+import WhatsAppButton from '@/components/whatsapp-button'
 import './globals.css'
 
 const inter = Inter({ 
@@ -56,6 +57,10 @@ export default function RootLayout({
 
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
+
+        {/* ✅ WhatsApp Floating Button */}
+        <WhatsAppButton />
+
         <Toaster position="bottom-right" />
         <Analytics />
       </body>
