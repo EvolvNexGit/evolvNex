@@ -8,9 +8,13 @@ export default function WhatsAppButton() {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 
   return (
-    <div className="fixed bottom-20 md:bottom-6 right-6 z-50 flex items-center gap-3">
-      {/* Label */}
-      <span className="hidden md:block bg-black text-white text-sm px-3 py-1 rounded shadow">
+    <div className="fixed bottom-20 md:bottom-6 right-6 z-50 flex items-center gap-3 group">
+      
+      {/* Label (only on hover) */}
+      <span className="bg-black text-white text-sm px-3 py-1 rounded shadow 
+                       opacity-0 translate-x-2 
+                       group-hover:opacity-100 group-hover:translate-x-0 
+                       transition-all duration-300 whitespace-nowrap">
         Chat with us
       </span>
 
