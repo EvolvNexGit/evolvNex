@@ -1,13 +1,68 @@
-"use client"
+'use client'
 
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 
 const stats = [
   { value: "10+", label: "Projects Delivered" },
   { value: "3.2x", label: "Avg ROI Delivered" },
   { value: "5+", label: "Industries Covered" },
-  { value: "7 Days", label: "Go-Live Guarantee" },,
+  { value: "7 Days", label: "Go-Live Guarantee" },
 ]
+
+function AnimatedStat({ value }: { value: string }) {
+  const [display, setDisplay] = useState("0")
+
+  useEffect(() => {
+    let end = 0
+    let suffix = ""
+
+    // Extract number + suffix
+    if (value.includes("+")) {
+      end = parseInt(value)
+      suffix = "+"
+    } else if (value.includes("x")) {
+      end = parseFloat(value)
+      suffix = "x"
+    } else if (value.toLowerCase().includes("day")) {
+      end = parseInt(value)
+      suffix = " Days"
+    } else {
+      end = parseFloat(value)
+    }
+
+    let start = 0
+    const duration = 1200
+    const steps = 30
+    const increment = end / steps
+    let currentStep = 0
+
+    const timer = setInterval(() => {
+      currentStep++
+
+      start += increment
+
+      if (currentStep >= steps) {
+        setDisplay(value) // final exact value
+        clearInterval(timer)
+      } else {
+        let formatted = ""
+
+        if (suffix === "x") {
+          formatted = start.toFixed(1)
+        } else {
+          formatted = Math.floor(start).toString()
+        }
+
+        setDisplay(formatted + suffix)
+      }
+    }, duration / steps)
+
+    return () => clearInterval(timer)
+  }, [value])
+
+  return <>{display}</>
+}
 
 export function Hero() {
   const scrollToSection = (href: string) => {
@@ -70,7 +125,7 @@ export function Hero() {
                 className={`py-10 px-6 ${index !== 0 ? 'border-l border-border' : ''}`}
               >
                 <div className="font-heading font-black text-4xl md:text-5xl text-foreground mb-2">
-                  {stat.value}
+                  <AnimatedStat value={stat.value} />
                 </div>
                 <div className="text-sm text-muted-foreground uppercase tracking-widest font-body">
                   {stat.label}
