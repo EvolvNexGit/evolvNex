@@ -5,7 +5,7 @@ import { Check } from "lucide-react"
 
 const tiers = [
   {
-    name: "Starter Presence",
+    name: "Growth Starter",
     price: "21,999",
     unit: "one-time",
     featured: false,
@@ -15,12 +15,11 @@ const tiers = [
       "Modern single-scroll design",
       "Mobile-optimized UI",
       "WhatsApp & call integration",
-      "Contact forms",
       "Basic SEO setup",
     ],
   },
   {
-    name: "Growth Engine",
+    name: "Growth Accelerator",
     price: "29,999",
     unit: "one-time",
     featured: true,
@@ -35,7 +34,7 @@ const tiers = [
     ],
   },
   {
-    name: "Authority System",
+    name: "Growth Engine",
     price: "49,999",
     unit: "onwards",
     featured: false,
@@ -45,7 +44,6 @@ const tiers = [
       "Advanced chatbot",
       "CRM / lead management system",
       "Growth strategy & scaling plan",
-      "Monthly maintainence & updates",
       "Priority support",
     ],
   },
