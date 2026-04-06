@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import Image from "next/image"
+import { useState } from 'react'
+import Image from 'next/image'
 
 const topRowProjects = [
   { id: 5, name: "K Fitness", image: "/images/work/k-fitness.png", url: "#" },
@@ -21,37 +21,9 @@ const bottomRowProjects = [
   { id: 7, name: "Latelier One", image: "/images/work/latelier-one.png", url: "#" },
 ]
 
-function ProjectCard({
-  project,
-}: {
-  project: { id: number; name: string; image: string; url: string }
-}) {
-  return (
-    <Link
-      href={project.url}
-      className="group relative flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-card"
-    >
-      <Image
-        src={project.image}
-        alt={project.name}
-        fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-
-      {/* Subtle Edge Vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_65%,rgba(0,0,0,0.45)_100%)]" />
-
-      {/* Hover CTA */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 border border-white/20 backdrop-blur">
-          View Project
-        </span>
-      </div>
-    </Link>
-  )
-}
-
 export function WorkShowcase() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
   return (
     <section id="work" className="py-32 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-16">
@@ -67,22 +39,73 @@ export function WorkShowcase() {
       </div>
 
       {/* Top Row */}
-      <div className="relative mb-8">
-        <div className="work-marquee-ltr flex gap-8">
+      <div className="relative mb-8 overflow-hidden group">
+        <div className="work-marquee-ltr flex gap-8 group-hover:[animation-play-state:paused]">
           {[...topRowProjects, ...topRowProjects].map((project, index) => (
-            <ProjectCard key={`top-${project.id}-${index}`} project={project} />
+            <div
+              key={`top-${project.id}-${index}`}
+              onClick={() => setSelectedImage(project.image)}
+              className="cursor-pointer flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-card group"
+            >
+              <Image
+                src={project.image}
+                alt={project.name}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 border border-white/20 backdrop-blur">
+                  View Project
+                </span>
+              </div>
+            </div>
           ))}
         </div>
       </div>
 
       {/* Bottom Row */}
-      <div className="relative">
-        <div className="work-marquee-rtl flex gap-8">
+      <div className="relative overflow-hidden group">
+        <div className="work-marquee-rtl flex gap-8 group-hover:[animation-play-state:paused]">
           {[...bottomRowProjects, ...bottomRowProjects].map((project, index) => (
-            <ProjectCard key={`bottom-${project.id}-${index}`} project={project} />
+            <div
+              key={`bottom-${project.id}-${index}`}
+              onClick={() => setSelectedImage(project.image)}
+              className="cursor-pointer flex-shrink-0 w-[400px] h-[250px] overflow-hidden border border-border bg-card group"
+            >
+              <Image
+                src={project.image}
+                alt={project.name}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-white font-heading uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 border border-white/20 backdrop-blur">
+                  View Project
+                </span>
+              </div>
+            </div>
           ))}
         </div>
       </div>
+
+      {/* 🔍 Lightbox */}
+      {selectedImage && (
+        <div
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center p-6"
+        >
+          <div className="relative w-full max-w-5xl h-[70vh]">
+            <Image
+              src={selectedImage}
+              alt="Preview"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
