@@ -26,9 +26,9 @@ const tiers = [
     features: [
       "Everything in Starter",
       "Conversion-focused page structure",
-      "AI chatbot (website integration)",
+      "One Time Strategy",
       "Appointment / booking system",
-      "Lead capture system (forms + CTAs)",
+      "Lead capture system",
       "Google Analytics integration",
       "Speed & UX optimization",
     ],
@@ -41,7 +41,7 @@ const tiers = [
     features: [
       "Everything in Growth",
       "WhatsApp automation setup",
-      "Advanced chatbot",
+      "Advanced AI chatbot",
       "CRM / lead management system",
       "Growth strategy & scaling plan",
       "Priority support",
