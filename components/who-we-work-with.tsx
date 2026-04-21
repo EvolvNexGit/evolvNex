@@ -7,32 +7,32 @@ const clients = [
   {
     icon: Rocket,
     title: "Startups",
-    description: "Early-stage startups ready to launch fast and build a strong digital presence that attracts their first customers.",
+    description: "Founders building from zero who need structured systems from day one — not patchwork solutions later.",
   },
   {
     icon: TrendingUp,
     title: "Scale-ups",
-    description: "Growing businesses looking to automate operations, capture more leads, and scale efficiently.",
+    description: "Businesses already growing but hitting operational bottlenecks, inconsistent conversions, or manual chaos.",
   },
   {
     icon: ShoppingCart,
     title: "E-Commerce",
-    description: "Online brands focused on increasing conversions, improving user experience, and driving more sales.",
+    description: "Brands looking to improve conversions, automate flows, and turn traffic into predictable revenue.",
   },
   {
     icon: Building2,
     title: "B2B SaaS",
-    description: "SaaS companies aiming to improve user acquisition, onboarding, and long-term retention.",
+    description: "SaaS teams focused on better acquisition, smoother onboarding, and stronger retention systems.",
   },
   {
     icon: Briefcase,
     title: "Service Firms",
-    description: "Agencies and service providers looking to generate consistent leads and streamline client management.",
+    description: "Agencies and service businesses that want consistent leads and structured client management.",
   },
   {
     icon: Cpu,
     title: "Tech Companies",
-    description: "Tech-driven businesses ready to enhance their digital presence and scale with smarter systems.",
+    description: "Tech-driven teams ready to scale with systems that support growth — not slow it down.",
   },
 ]
 
@@ -47,13 +47,13 @@ export function WhoWeWorkWith() {
           className="mb-16 max-w-2xl"
         >
           <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
-            Who We Help Grow
+            Who We Work With
           </p>
           <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
-            Businesses Ready to Scale
+            Built For Businesses That Want To Scale
           </h2>
           <p className="text-muted-foreground font-body text-sm leading-relaxed">
-            We work with businesses that are serious about growth - not just having a website.
+            Not for businesses looking for quick fixes. We work with teams that want clarity, structure, and long-term growth.
           </p>
         </motion.div>
 

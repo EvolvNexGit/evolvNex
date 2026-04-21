@@ -7,26 +7,26 @@ const steps = [
   {
     number: "01",
     icon: Search,
-    title: "Discovery",
-    description: "Deep dive into your business, market, and goals to understand what drives success.",
+    title: "Diagnose",
+    description: "We analyze your business, identify bottlenecks, and uncover where growth is being lost.",
   },
   {
     number: "02",
     icon: Lightbulb,
-    title: "Strategy",
-    description: "Craft a comprehensive roadmap aligned with your vision and market opportunities.",
+    title: "Design",
+    description: "We create a clear system tailored to your operations, goals, and growth stage.",
   },
   {
     number: "03",
     icon: Code,
-    title: "Build",
-    description: "Execute with precision using modern technologies and battle-tested methodologies.",
+    title: "Implement",
+    description: "We build and integrate everything — from tools to workflows — into one streamlined system.",
   },
   {
     number: "04",
     icon: Rocket,
-    title: "Scale",
-    description: "Launch, optimize, and scale your systems for sustainable, predictable growth.",
+    title: "Optimize",
+    description: "We refine continuously to improve performance, reduce friction, and support consistent growth.",
   },
 ]
 
@@ -49,10 +49,10 @@ export function Approach() {
               How We Work
             </p>
             <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-6">
-              Our Approach
+              A Structured Approach To Growth
             </h2>
             <p className="text-lg text-muted-foreground font-body leading-relaxed">
-              A systematic, battle-tested process designed to transform your vision into scalable digital solutions that drive real results.
+              No guesswork. No random tools. Every step is designed to bring clarity, structure, and measurable improvement to your business.
             </p>
           </motion.div>
 

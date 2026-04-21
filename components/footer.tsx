@@ -1,13 +1,13 @@
 "use client"
 
 const footerLinks = {
-  Services: [
-    "Web Development",
-    "Brand Identity",
-    "AI Automation",
-    "Funnels & Growth Systems",
+  Systems: [
+    "Conversion Systems",
+    "Brand Systems",
+    "Automation Systems",
+    "Growth Systems",
   ],
-  Company: ["About", "Blog", "Contact"], // ❌ Careers removed
+  Company: ["About", "Blog", "Contact"],
   Legal: ["Privacy Policy", "Terms of Service"],
 }
 
@@ -32,22 +32,22 @@ export function Footer() {
             </span>
 
             <p className="text-muted-foreground font-body mb-4">
-              Where Brands Become Scalable Systems.
+              Structured Systems. Real Business Growth.
             </p>
 
             <p className="text-sm text-muted-foreground/70 mb-6 max-w-sm">
-              We design, build, and automate digital experiences that drive growth.
+              We design and implement systems that simplify operations, improve conversions, and support scalable growth.
             </p>
 
-            {/* ✅ ONLY CLICKABLE CTA */}
+            {/* CTA */}
             <a
               href="/contact"
               className="text-sm text-primary font-semibold hover:underline"
             >
-              → Book a Strategy Call
+              → Get Growth Audit
             </a>
 
-            {/* Socials (still clickable) */}
+            {/* Socials */}
             <div className="flex gap-6 mt-6">
               {socialLinks.map((link) => (
                 <a
@@ -63,7 +63,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* ❌ Non-clickable Link Columns */}
+          {/* Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
               <h4 className="font-heading font-bold text-sm uppercase tracking-widest mb-4">
@@ -85,7 +85,7 @@ export function Footer() {
 
         {/* Trust Line */}
         <div className="text-center text-xs text-muted-foreground/50 mt-12">
-          Built for ambitious brands. Designed to scale.
+          Built for businesses that want clarity, structure, and consistent growth.
         </div>
 
         {/* Bottom */}
@@ -95,7 +95,7 @@ export function Footer() {
           </p>
 
           <p className="text-sm text-muted-foreground/70 font-body">
-            Engineered for performance. Built for scale.
+            Systems that scale with your business.
           </p>
         </div>
 

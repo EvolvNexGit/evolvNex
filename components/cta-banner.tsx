@@ -23,17 +23,18 @@ export function CTABanner() {
         >
           <div>
             <h2 className="text-3xl sm:text-4xl font-heading font-black uppercase tracking-tight text-primary-foreground mb-2">
-              Ready to Transform Your Brand?
+              Ready To Build Systems That Scale?
             </h2>
             <p className="text-primary-foreground/80 font-body text-lg">
-              Let's build something extraordinary together.
+              Let’s identify what’s slowing your business down and fix it with the right structure.
             </p>
           </div>
+
           <button
             onClick={scrollToContact}
             className="flex-shrink-0 bg-background text-foreground px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-background/90 transition-colors"
           >
-            Start Your Project
+            Get Growth Audit
           </button>
         </motion.div>
       </div>

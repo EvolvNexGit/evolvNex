@@ -9,21 +9,21 @@ const products = [
     name: "AI Agents",
     status: "Beta",
     statusBg: "bg-primary text-primary-foreground",
-    description: "Intelligent assistants that handle outreach, support, and scheduling autonomously.",
+    description: "Autonomous systems that handle conversations, follow-ups, and operations without constant human input.",
   },
   {
     icon: Bot,
     name: "AskBOT.AI",
     status: "Coming Soon",
     statusBg: "bg-foreground/10 text-foreground",
-    description: "AI-powered assistant designed to answer queries with large context window 24/7.",
+    description: "A context-aware AI assistant designed to understand, respond, and support customers at scale.",
   },
   {
     icon: Boxes,
     name: "Integration Hub",
     status: "Coming Soon",
     statusBg: "bg-foreground/10 text-foreground",
-    description: "Unified platform connecting all your tools and data sources seamlessly.",
+    description: "A unified layer that connects your tools, data, and workflows into one seamless system.",
   },
 ]
 
@@ -37,12 +37,17 @@ export function FutureVision() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 max-w-2xl"
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">What's Next</p>
-          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
-            Future Vision
+          <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
+            What We’re Building
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
+            The Future Of Business Systems
           </h2>
+          <p className="text-muted-foreground font-body text-sm leading-relaxed">
+            We’re not just implementing systems for today. We’re building the infrastructure that will define how businesses operate, scale, and automate in the future.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -58,10 +63,13 @@ export function FutureVision() {
               <span className={`inline-block px-3 py-1 text-xs uppercase tracking-widest font-bold mb-6 ${product.statusBg}`}>
                 {product.status}
               </span>
+
               <product.icon className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
+
               <h3 className="text-xl font-heading font-bold uppercase tracking-wide mb-3">
                 {product.name}
               </h3>
+
               <p className="text-muted-foreground font-body text-sm leading-relaxed">
                 {product.description}
               </p>
