@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from "next/link"
 import Image from "next/image"
 
 const topRowProjects = [
@@ -59,13 +58,13 @@ export function WorkShowcase() {
     <section id="work" className="py-32 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-16">
         <p className="text-primary font-heading uppercase tracking-widest text-sm mb-4">
-          Portfolio
+          Selected Work
         </p>
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black uppercase tracking-tight">
-          Our Work
+          What We’ve Built
         </h2>
         <p className="text-muted-foreground mt-4 max-w-2xl">
-          Websites and digital experiences we have built for our clients.
+          A look at the businesses we’ve worked with and the solutions we’ve delivered.
         </p>
       </div>
 

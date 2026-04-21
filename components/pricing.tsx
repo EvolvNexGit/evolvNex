@@ -9,13 +9,15 @@ const tiers = [
     price: "21,999",
     unit: "one-time",
     featured: false,
+    forWho: "For businesses getting started with their online presence",
+    outcome: "You get a clean, credible presence that builds trust and captures basic enquiries.",
     features: [
-      "Brand Identity Design",
-      "5+ sections responsive website",
-      "Modern single-scroll design",
-      "Mobile-optimized UI",
+      "Brand identity setup",
+      "5+ section responsive website",
+      "Clean single-scroll experience",
+      "Mobile-optimized interface",
       "WhatsApp & call integration",
-      "Basic SEO setup",
+      "Basic SEO foundation",
     ],
   },
   {
@@ -23,13 +25,15 @@ const tiers = [
     price: "29,999",
     unit: "one-time",
     featured: true,
+    forWho: "For businesses looking to improve conversions and lead flow",
+    outcome: "You start getting structured enquiries with a clear flow from visitor to lead.",
     features: [
       "Everything in Starter",
       "Conversion-focused page structure",
-      "One Time Strategy",
+      "Business flow & page strategy",
       "Appointment / booking system",
-      "Lead capture system",
-      "Google Analytics integration",
+      "Lead capture & enquiry flow",
+      "Analytics & tracking setup",
       "Speed & UX optimization",
     ],
   },
@@ -38,12 +42,17 @@ const tiers = [
     price: "49,999",
     unit: "onwards",
     featured: false,
+    forWho: "For businesses ready to streamline operations and scale",
+    outcome: "Your business runs on structured workflows with automation handling leads, follow-ups, and operations.",
     features: [
-      "Everything in Growth",
+      "Everything in Accelerator",
       "WhatsApp automation setup",
-      "Advanced AI chatbot",
-      "CRM / lead management system",
-      "Growth strategy & scaling plan",
+      "AI chatbot for enquiries",
+      "CRM with lead management",
+      "Inventory / billing integrations",
+      "Subscription & customer tracking",
+      "End-to-end workflow automation",
+      "Growth planning & scaling support",
       "Priority support",
     ],
   },
@@ -66,14 +75,17 @@ export function Pricing() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 max-w-2xl mx-auto"
         >
           <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
-            Pricing
+            Investment
           </p>
-          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight">
-            Investment Plans
+          <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
+            Growth Plans
           </h2>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            Choose the level of structure your business needs — from building your presence to setting up complete growth infrastructure.
+          </p>
         </motion.div>
 
         {/* Pricing Cards */}
@@ -85,13 +97,11 @@ export function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-
               whileHover={{
                 scale: 1.03,
                 y: -4,
                 transition: { duration: 0.12 }
               }}
-
               className={`relative p-8 border bg-card cursor-pointer group
                 transition-[border,box-shadow,transform] duration-100 ease-out
                 ${
@@ -105,17 +115,22 @@ export function Pricing() {
               {/* Featured Badge */}
               {tier.featured && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs uppercase tracking-widest font-bold px-4 py-1">
-                  Most Popular
+                  Most Chosen
                 </div>
               )}
 
               {/* Title */}
-              <h3 className="text-lg font-heading font-bold uppercase tracking-widest mb-2 transition-colors duration-100 group-hover:text-primary">
+              <h3 className="text-lg font-heading font-bold uppercase tracking-widest mb-2 group-hover:text-primary transition">
                 {tier.name}
               </h3>
 
+              {/* Who it's for */}
+              <p className="text-xs text-muted-foreground mb-3">
+                {tier.forWho}
+              </p>
+
               {/* Price */}
-              <div className="flex items-baseline gap-1 mb-8">
+              <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-heading font-black">
                   ₹{tier.price}
                 </span>
@@ -123,6 +138,11 @@ export function Pricing() {
                   {tier.unit}
                 </span>
               </div>
+
+              {/* Outcome */}
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                {tier.outcome}
+              </p>
 
               {/* Features */}
               <ul className="space-y-3 mb-8">
@@ -137,13 +157,13 @@ export function Pricing() {
               {/* Button */}
               <button
                 onClick={scrollToContact}
-                className={`w-full py-3 text-sm font-bold uppercase tracking-widest transition-colors duration-100 ${
+                className={`w-full py-3 text-sm font-bold uppercase tracking-widest transition ${
                   tier.featured
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "border border-foreground text-foreground hover:bg-foreground hover:text-background"
                 }`}
               >
-                Get Started
+                Get Growth Audit
               </button>
             </motion.div>
           ))}
