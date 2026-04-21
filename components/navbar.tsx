@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react"
 import Image from "next/image"
 
 const navLinks = [
-  { name: "Services", href: "#services" },
+  { name: "Systems", href: "#services" },
   { name: "Approach", href: "#approach" },
   { name: "Work", href: "#work" },
   { name: "Contact", href: "#contact" },
@@ -74,7 +74,7 @@ export function Navbar() {
               onClick={() => scrollToSection("#contact")}
               className="bg-primary text-primary-foreground px-6 py-2.5 text-sm uppercase tracking-widest font-bold hover:bg-primary/90 transition-colors"
             >
-              Book a Call
+              Get Growth Audit
             </button>
           </div>
 
@@ -144,7 +144,7 @@ export function Navbar() {
                   onClick={() => scrollToSection("#contact")}
                   className="mt-4 bg-primary text-primary-foreground px-8 py-4 text-lg font-bold uppercase tracking-widest"
                 >
-                  Book a Call
+                  Get Growth Audit
                 </motion.button>
               </div>
             </motion.div>
