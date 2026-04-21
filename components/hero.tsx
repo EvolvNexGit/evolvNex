@@ -4,10 +4,10 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
 const stats = [
-  { value: "10+", label: "Projects Delivered" },
-  { value: "3.2x", label: "Avg ROI Delivered" },
-  { value: "5+", label: "Industries Covered" },
-  { value: "7 Days", label: "Go-Live Guarantee" },
+  { value: "10+", label: "Systems Delivered" },
+  { value: "3.2x", label: "Average Growth Impact" },
+  { value: "5+", label: "Industries Worked With" },
+  { value: "7 Days", label: "Execution Turnaround" },
 ]
 
 function AnimatedStat({ value }: { value: string }) {
@@ -17,7 +17,6 @@ function AnimatedStat({ value }: { value: string }) {
     let end = 0
     let suffix = ""
 
-    // Extract number + suffix
     if (value.includes("+")) {
       end = parseInt(value)
       suffix = "+"
@@ -39,11 +38,10 @@ function AnimatedStat({ value }: { value: string }) {
 
     const timer = setInterval(() => {
       currentStep++
-
       start += increment
 
       if (currentStep >= steps) {
-        setDisplay(value) // final exact value
+        setDisplay(value)
         clearInterval(timer)
       } else {
         let formatted = ""
@@ -83,13 +81,13 @@ export function Hero() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="mt-6 text-3xl sm:text-5xl lg:text-6xl font-heading font-black uppercase tracking-tight leading-[0.9] mb-8">
-            We Build<br />
-            <span className="text-primary">Digital</span> Growth<br />
-            Systems
+            Structured<br />
+            <span className="text-primary">Systems</span> For<br />
+            Business Growth
           </h1>
 
           <p className="text-xl sm:text-2xl text-muted-foreground font-body mb-14 max-w-2xl">
-            Where Brands Become Systems. We transform ambitious brands into scalable, automated growth engines.
+            We design and implement custom systems that simplify operations, improve conversions, and make growth more predictable.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -97,14 +95,14 @@ export function Hero() {
               onClick={() => scrollToSection("#work")}
               className="border-2 border-foreground text-foreground px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors"
             >
-              View Our Work
+              See How It Works
             </button>
 
             <button
               onClick={() => scrollToSection("#contact")}
               className="bg-primary text-primary-foreground px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors"
             >
-              Start Your Project
+              Get Growth Audit
             </button>
           </div>
         </motion.div>
