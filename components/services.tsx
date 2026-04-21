@@ -6,45 +6,45 @@ import { Globe, Palette, Zap, BarChart3 } from "lucide-react"
 const services = [
   {
     icon: Globe,
-    title: "High-Converting Websites",
-    description: "We build fast, structured websites designed to turn visitors into leads - not just look good.",
+    title: "Conversion Systems",
+    description: "Web experiences designed to capture attention, qualify visitors, and turn interest into real enquiries.",
     features: [
-      "Conversion-focused design",
+      "Conversion-focused structure",
       "Mobile-first experience",
-      "SEO-ready structure",
-      "Lightning-fast performance",
+      "SEO-ready foundation",
+      "High-speed performance",
     ],
   },
   {
     icon: Palette,
-    title: "Brand That Builds Trust",
-    description: "Your business needs more than a logo - we create a visual identity that makes you look credible and premium.",
+    title: "Brand Systems",
+    description: "A clear, consistent identity that builds trust and positions your business as credible and premium.",
     features: [
-      "Logo & visual identity",
-      "Brand consistency",
-      "Trust-focused design",
-      "Market positioning",
+      "Visual identity & branding",
+      "Consistent design language",
+      "Trust-driven presentation",
+      "Market positioning clarity",
     ],
   },
   {
     icon: Zap,
-    title: "Smart Automation Systems",
-    description: "Save time and never miss a lead with automated workflows that handle inquiries, follow-ups, and bookings.",
+    title: "Automation Systems",
+    description: "Reduce manual work and never miss opportunities with workflows that handle leads, follow-ups, and operations.",
     features: [
       "WhatsApp automation",
       "AI chatbot integration",
-      "CRM setup",
-      "Lead follow-up systems",
+      "CRM setup & workflows",
+      "Automated follow-ups",
     ],
   },
   {
     icon: BarChart3,
-    title: "Lead Generation & Analytics",
-    description: "Track what works, improve conversions, and consistently generate leads with data-driven systems.",
+    title: "Growth Systems",
+    description: "Track performance, understand what works, and improve conversions with data-backed decision making.",
     features: [
-      "Analytics setup",
+      "Analytics & tracking setup",
       "Funnel optimization",
-      "Lead tracking",
+      "Lead visibility",
       "Performance insights",
     ],
   },
@@ -63,13 +63,13 @@ export function Services() {
           className="mb-16 max-w-2xl"
         >
           <p className="text-primary text-sm uppercase tracking-widest font-bold mb-3">
-            What We Do
+            What We Build
           </p>
           <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
-            Systems That Bring You Customers
+            Systems That Drive Real Growth
           </h2>
           <p className="text-muted-foreground font-body text-sm leading-relaxed">
-            We don’t just build websites - we create systems that attract, convert, and manage your customers automatically.
+            Not disconnected tools. Structured systems that work together to attract, convert, and manage your customers efficiently.
           </p>
         </motion.div>
 
@@ -111,10 +111,10 @@ export function Services() {
         {/* Bottom Micro CTA */}
         <div className="mt-16 text-center">
           <p className="text-muted-foreground text-sm mb-4">
-            Everything we build is focused on one goal - helping your business get more customers.
+            Every system is designed to reduce effort, improve conversions, and support consistent growth.
           </p>
           <button className="text-primary font-bold uppercase tracking-widest text-sm hover:opacity-80 transition">
-            Book a Free Consultation →
+            Get Growth Audit →
           </button>
         </div>
       </div>
