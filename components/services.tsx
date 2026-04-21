@@ -7,40 +7,40 @@ const services = [
   {
     icon: Globe,
     title: "Conversion Systems",
-    description: "Web experiences designed to capture attention, qualify visitors, and turn interest into real enquiries.",
+    description: "Web experiences built to capture attention, guide users, and convert interest into real enquiries.",
     features: [
-      "Conversion-focused structure",
-      "Mobile-first experience",
+      "Conversion-first structure",
+      "Mobile-optimized experience",
       "SEO-ready foundation",
-      "High-speed performance",
+      "High-performance loading",
     ],
   },
   {
     icon: Palette,
     title: "Brand Systems",
-    description: "A clear, consistent identity that builds trust and positions your business as credible and premium.",
+    description: "A consistent identity that builds trust, improves perception, and positions your business clearly.",
     features: [
       "Visual identity & branding",
       "Consistent design language",
-      "Trust-driven presentation",
-      "Market positioning clarity",
+      "Trust-focused presentation",
+      "Clear market positioning",
     ],
   },
   {
     icon: Zap,
     title: "Automation Systems",
-    description: "Reduce manual work and never miss opportunities with workflows that handle leads, follow-ups, and operations.",
+    description: "Eliminate manual work with systems that handle leads, follow-ups, and workflows automatically.",
     features: [
       "WhatsApp automation",
       "AI chatbot integration",
-      "CRM setup & workflows",
+      "CRM workflows",
       "Automated follow-ups",
     ],
   },
   {
     icon: BarChart3,
     title: "Growth Systems",
-    description: "Track performance, understand what works, and improve conversions with data-backed decision making.",
+    description: "Understand performance, improve conversions, and make decisions backed by real data.",
     features: [
       "Analytics & tracking setup",
       "Funnel optimization",
@@ -51,6 +51,13 @@ const services = [
 ]
 
 export function Services() {
+  const scrollToContact = () => {
+    const element = document.querySelector("#contact")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section id="services" className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 diagonal-stripes" />
@@ -66,10 +73,10 @@ export function Services() {
             What We Build
           </p>
           <h2 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight mb-4">
-            Systems That Drive Real Growth
+            Systems That Drive Business Growth
           </h2>
           <p className="text-muted-foreground font-body text-sm leading-relaxed">
-            Not disconnected tools. Structured systems that work together to attract, convert, and manage your customers efficiently.
+            Not random tools. Structured systems designed to attract, convert, and manage your customers efficiently.
           </p>
         </motion.div>
 
@@ -111,9 +118,12 @@ export function Services() {
         {/* Bottom Micro CTA */}
         <div className="mt-16 text-center">
           <p className="text-muted-foreground text-sm mb-4">
-            Every system is designed to reduce effort, improve conversions, and support consistent growth.
+            Built to reduce manual effort, improve conversions, and support consistent growth.
           </p>
-          <button className="text-primary font-bold uppercase tracking-widest text-sm hover:opacity-80 transition">
+          <button
+            onClick={scrollToContact}
+            className="text-primary font-bold uppercase tracking-widest text-sm hover:opacity-80 transition"
+          >
             Get Growth Audit →
           </button>
         </div>
