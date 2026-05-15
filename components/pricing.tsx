@@ -77,7 +77,7 @@ export function Pricing() {
     <section id="pricing" className="py-32">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Heading */}
+        // Heading
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,9 +95,8 @@ export function Pricing() {
           </p>
         </motion.div>
 
-        {/* Pricing content hidden temporarily; preserving section structure and layout */}
+        // Pricing content hidden temporarily; preserving section structure and layout
         <div className="grid md:grid-cols-3 gap-6">
-          {
           {tiers.map((tier, index) => (
             <motion.div
               key={tier.name}
@@ -168,7 +167,6 @@ export function Pricing() {
               </button>
             </motion.div>
           ))}
-          }
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
