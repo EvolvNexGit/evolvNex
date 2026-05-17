@@ -87,7 +87,7 @@ export function Hero() {
           </h1>
 
           <p className="text-xl sm:text-2xl text-muted-foreground font-body mb-14 max-w-2xl">
-            We design and implement custom systems that simplify operations, improve conversions, and make growth more predictable.
+            We design
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
