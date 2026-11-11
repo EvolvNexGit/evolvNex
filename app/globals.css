@@ -3,34 +3,50 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * EvolvNex design tokens (locked in the Website Rebuild Plan).
+ * Surfaces: #0C0C0C background, #111111 primary surface, #171717 secondary
+ * (use sparingly), #242424 borders. Accent #DC2626 used deliberately.
+ */
 :root {
-  --background: #0a0a0a;
-  --foreground: #fafafa;
-  --card: #0f0f0f;
-  --card-foreground: #fafafa;
-  --popover: #0f0f0f;
-  --popover-foreground: #fafafa;
+  --background: #0c0c0c;
+  --foreground: #ffffff;
+  --card: #111111;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
   --primary: #dc2626;
-  --primary-foreground: #fafafa;
-  --secondary: #141414;
-  --secondary-foreground: #fafafa;
-  --muted: #1a1a1a;
-  --muted-foreground: #a1a1aa;
-  --accent: #dc2626;
-  --accent-foreground: #fafafa;
+  --primary-foreground: #ffffff;
+  --secondary: #171717;
+  --secondary-foreground: #ffffff;
+  --muted: #171717;
+  --muted-foreground: #9ca3af;
+  --subtle: #6b7280; /* muted text: decorative / non-essential only (4.0:1) */
+  --accent: #171717;
+  --accent-foreground: #ffffff;
+  --accent-text: #ef4444; /* red for small text: 5.2:1 on #0C0C0C */
   --destructive: #dc2626;
-  --destructive-foreground: #fafafa;
-  --border: #27272a;
-  --input: #1a1a1a;
+  --destructive-foreground: #ffffff;
+  --border: #242424;
+  --input: #242424;
   --ring: #dc2626;
-  --radius: 0rem;
-  --sidebar: #0f0f0f;
-  --sidebar-foreground: #fafafa;
+
+  /* Radius scale 8 / 12 / 16 */
+  --radius: 0.75rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 600ms;
+
+  --sidebar: #111111;
+  --sidebar-foreground: #ffffff;
   --sidebar-primary: #dc2626;
-  --sidebar-primary-foreground: #fafafa;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #27272a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #171717;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #242424;
   --sidebar-ring: #dc2626;
 }
 
@@ -38,7 +54,6 @@
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-heading: var(--font-inter), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
-  --font-mono: 'Geist Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -51,17 +66,19 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-subtle: var(--subtle);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: 0rem;
-  --radius-md: 0rem;
-  --radius-lg: 0rem;
-  --radius-xl: 0rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1rem;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -76,124 +93,63 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
   body {
     @apply bg-background text-foreground;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  p,
+  li {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background-color: var(--primary);
+    color: #ffffff;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
   }
 }
 
-/* Font utilities */
-.font-heading {
-  font-family: var(--font-heading);
+/* Anchor targets clear the sticky header */
+[id] {
+  scroll-margin-top: 6rem;
 }
 
-.font-body {
-  font-family: var(--font-body);
-}
-
-/* Diagonal Stripes */
-.diagonal-stripes {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 40px,
-    rgba(255, 255, 255, 0.01) 40px,
-    rgba(255, 255, 255, 0.01) 80px
-  );
-}
-
-.diagonal-stripes-red {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 40px,
-    rgba(0, 0, 0, 0.1) 40px,
-    rgba(0, 0, 0, 0.1) 80px
-  );
-}
-
-/* Marquee Animations */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  100% {
-    transform: translateX(-50%);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-.animate-marquee {
-  animation: marquee 20s linear infinite;
-  width: max-content;
-}
-
-@keyframes case-marquee {
-  0% {
-    transform: translateX(-33.33%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-.case-marquee {
-  animation: case-marquee 18s linear infinite;
-  width: max-content;
-}
-
-/* Work Showcase Marquee - Left to Right */
-@keyframes work-marquee-ltr {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-.work-marquee-ltr {
-  animation: work-marquee-ltr 30s linear infinite;
-  width: max-content;
-}
-
-/* Work Showcase Marquee - Right to Left */
-@keyframes work-marquee-rtl {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.work-marquee-rtl {
-  animation: work-marquee-rtl 30s linear infinite;
-  width: max-content;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #27272a;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #dc2626;
-}
-
-/* Selection */
-::selection {
-  background-color: #dc2626;
-  color: #fafafa;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
 }
