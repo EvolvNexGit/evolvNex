@@ -25,7 +25,7 @@ function FlipCard({ item, index }: { item: IndustryItem; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '0px 0px -10% 0px' }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="flip-scene aspect-[4/5] sm:aspect-[5/6]"
+      className="flip-scene h-[340px] sm:h-[380px]"
       data-flipped={flipped}
       onClick={(e) => {
         // let real link clicks through; otherwise toggle (touch devices)
@@ -43,7 +43,7 @@ function FlipCard({ item, index }: { item: IndustryItem; index: number }) {
             sizes="(min-width: 768px) 560px, 100vw"
             className="object-cover grayscale brightness-[0.5] contrast-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-7">
             <h3 className="text-sm font-bold uppercase tracking-[0.2em]">{item.title}</h3>
             <span className="text-[11px] uppercase tracking-[0.2em] text-white/60">Hover / tap</span>
@@ -51,12 +51,12 @@ function FlipCard({ item, index }: { item: IndustryItem; index: number }) {
         </div>
 
         {/* back */}
-        <div className="flip-face flip-back absolute inset-0 flex flex-col justify-between overflow-hidden rounded-lg border border-primary bg-gradient-to-br from-[#1a0909] via-[#0f0f0f] to-background p-7 sm:p-9">
+        <div className="flip-face flip-back absolute inset-0 flex flex-col justify-between overflow-hidden rounded-lg border border-primary bg-card p-7 sm:p-8">
           <div>
             <span className="block h-px w-12 bg-primary" aria-hidden />
-            <h3 className="mt-6 text-3xl font-semibold tracking-tight">{item.title}</h3>
+            <h3 className="mt-5 text-2xl font-black tracking-tight uppercase">{item.title}</h3>
             <p className="mt-3 text-muted-foreground">{item.description}</p>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-5 space-y-2.5">
               {item.points.map((p) => (
                 <li key={p} className="flex items-start gap-3 text-sm">
                   <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />

@@ -13,6 +13,7 @@ import { MarqueeBar } from '@/components/home/marquee-bar'
 import { ServiceGrid, type ServiceItem } from '@/components/home/service-grid'
 import { ProjectMarquee } from '@/components/home/project-marquee'
 import { IndustryFlip, type IndustryItem } from '@/components/home/industry-flip'
+import { Approach } from '@/components/home/approach'
 
 export const metadata = buildMetadata({
   title: 'EvolvNex | Websites, Branding, CRM & Business Automation',
@@ -23,14 +24,15 @@ export const metadata = buildMetadata({
 
 /**
  * TODO (business): these figures are derived from what is in this repo
- * (9 published website projects, 4 service lines, 2 industry CRMs).
+ * (9 published website projects, 5 service lines, 2 industry CRMs).
+ * '7 Days delivery guarantee' was requested by the business; confirm its terms.
  * Replace with confirmed numbers (clients, years, projects) before launch.
  */
 const stats: Stat[] = [
   { value: 9, suffix: '+', label: 'Websites delivered' },
-  { value: 4, label: 'Core services' },
+  { value: 5, label: 'Core services' },
   { value: 2, label: 'Industry CRMs' },
-  { value: 100, suffix: '%', label: 'Remote delivery' },
+  { value: 7, suffix: 'Days', label: 'Delivery guarantee' },
 ]
 
 const services: ServiceItem[] = [
@@ -62,33 +64,17 @@ const services: ServiceItem[] = [
     href: '/services#automation',
     image: '/images/home/automation.jpg',
   },
+  {
+    title: 'SEO Foundations',
+    tagline: 'Search visibility',
+    description: 'Technical SEO built in, so customers can find you on Google.',
+    href: '/services#seo',
+    image: '/images/home/seo.jpg',
+  },
 ]
 
 /** Top attractions: 4 hand-picked projects. */
 const TOP_SLUGS = ['k-fitness', 'regain-clinic', '24k-springs-salon', 'studio11-salon-spa']
-
-const steps = [
-  {
-    n: '01',
-    title: 'Discovery & Strategy',
-    text: 'We learn your business, customers and goals before we design or write a line of code.',
-  },
-  {
-    n: '02',
-    title: 'Scope & Planning',
-    text: 'Clear scope, sitemap and priorities, so you know exactly what gets built and when.',
-  },
-  {
-    n: '03',
-    title: 'Design & Development',
-    text: 'Responsive, SEO-ready websites and CRM systems built in reviewable stages.',
-  },
-  {
-    n: '04',
-    title: 'Launch & Optimisation',
-    text: 'We go live, track performance and keep improving what works.',
-  },
-]
 
 const industries: IndustryItem[] = [
   {
@@ -102,7 +88,7 @@ const industries: IndustryItem[] = [
     href: '/crm/food',
     cta: 'Explore Food CRM',
     image: '/images/home/industry-food.jpg',
-    imageAlt: 'Plated dish on a restaurant table',
+    imageAlt: 'Modern restaurant dining room',
   },
   {
     title: 'Healthcare',
@@ -115,7 +101,7 @@ const industries: IndustryItem[] = [
     href: '/crm/healthcare',
     cta: 'Explore Healthcare CRM',
     image: '/images/home/industry-health.jpg',
-    imageAlt: 'Doctor in a white coat using a phone',
+    imageAlt: 'Doctor holding a stethoscope',
   },
 ]
 
@@ -151,30 +137,11 @@ export default function HomePage() {
         <ProjectMarquee projects={top} />
       </Section>
 
-      {/* How we work: same layout and animation as before, new SEO copy */}
-      <Section tone="surface">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="How we work"
-              title="Our website, CRM and automation process"
-              description="Remote-first delivery in four clear stages, so you always know what happens next."
-            />
-          </Reveal>
-          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <Reveal as="li" key={s.n} delay={i * 0.06} className="border-t border-border pt-5">
-                <span className="text-sm font-semibold text-accent-text">{s.n}</span>
-                <h3 className="mt-2 text-xl font-semibold tracking-tight">{s.title}</h3>
-                <p className="mt-2 text-muted-foreground">{s.text}</p>
-              </Reveal>
-            ))}
-          </ol>
-        </Container>
-      </Section>
+      {/* How we work: identical to the original evolvnex.com section */}
+      <Approach />
 
       {/* Industries */}
-      <Section>
+      <Section className="border-t border-border">
         <Container>
           <Reveal>
             <SectionHeading

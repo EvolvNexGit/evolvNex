@@ -16,11 +16,11 @@ export function SectionHeading({
   return (
     <div className={cn('max-w-2xl', className)}>
       {eyebrow && (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-accent-text">
+        <p className="mb-3 text-sm font-bold uppercase tracking-widest text-accent-text">
           {eyebrow}
         </p>
       )}
-      <Tag className="text-3xl font-semibold tracking-[-0.03em] sm:text-5xl">{title}</Tag>
+      <Tag className="text-3xl font-black tracking-tight uppercase sm:text-4xl">{title}</Tag>
       {description && (
         <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
           {description}

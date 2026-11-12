@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { Container } from '@/components/site/container'
 import { ButtonLink } from '@/components/site/button-link'
+import { GridBackground } from './grid-background'
 
 const LINES = ['Digital systems', 'that move business', 'forward.']
 
@@ -12,43 +13,35 @@ export function Hero() {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '40%'])
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-border"
+      className="relative flex min-h-[92svh] items-center overflow-hidden border-b border-border"
     >
-      {/* animated background */}
       <motion.div aria-hidden style={{ y: bgY }} className="absolute inset-0">
-        <div className="hero-grid absolute inset-0" />
-        <div
-          className="absolute -top-1/4 -left-1/4 size-[60vw] rounded-full bg-primary/15 blur-[140px]"
-          style={{ animation: 'drift-a 18s ease-in-out infinite' }}
-        />
-        <div
-          className="absolute -right-1/4 -bottom-1/3 size-[50vw] rounded-full bg-white/[0.04] blur-[140px]"
-          style={{ animation: 'drift-b 22s ease-in-out infinite' }}
-        />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+        <GridBackground comets={2} />
+        {/* single faint brand glow */}
+        <div className="absolute -top-1/3 -left-1/4 size-[55vw] rounded-full bg-primary/[0.06] blur-[160px]" />
       </motion.div>
 
-      <Container className="relative pt-24 pb-28">
+      <Container className="relative pt-24 pb-24">
         <motion.div style={{ y, opacity }}>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent-text"
+            className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-accent-text"
           >
             <span className="h-px w-10 bg-primary" aria-hidden />
             Websites · Branding · CRM
           </motion.p>
 
-          <h1 className="text-[clamp(2.75rem,9vw,8rem)] leading-[0.95] font-semibold tracking-[-0.04em]">
+          <h1 className="text-[clamp(2rem,4.8vw,4rem)] leading-[1] font-black tracking-tight uppercase">
             {LINES.map((line, i) => (
-              <span key={line} className="block overflow-hidden pb-[0.08em]">
+              <span key={line} className="block overflow-hidden pb-[0.06em]">
                 <motion.span
                   className={`block ${i === 2 ? 'text-primary' : ''}`}
                   initial={{ y: '105%' }}

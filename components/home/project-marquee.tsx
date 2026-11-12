@@ -30,9 +30,8 @@ function Card({ project, hidden }: { project: Project; hidden?: boolean }) {
               alt={hidden ? '' : cover.alt}
               fill
               sizes="440px"
-              className="object-cover object-top grayscale-[0.85] transition-[transform,filter] duration-700 group-hover:scale-105 group-hover:grayscale-0"
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <span className="absolute top-4 right-4 inline-flex size-10 scale-75 items-center justify-center rounded-full bg-primary text-white opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100">
               <ArrowUpRight className="size-5" aria-hidden />
             </span>

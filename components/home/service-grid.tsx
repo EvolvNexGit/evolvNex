@@ -23,14 +23,14 @@ export function ServiceGrid({ items }: { items: ServiceItem[] }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '0px 0px -10% 0px' }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-lg border border-primary/60 bg-gradient-to-br from-[#1a0909] via-[#0f0f0f] to-background p-7"
+        className="relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-lg border border-primary/60 bg-card p-7"
       >
         <span className="h-px w-12 bg-primary" aria-hidden />
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-accent-text">
             What we build
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-2xl font-black tracking-tight uppercase sm:text-3xl">
             We build digital presence with purpose
           </h2>
         </div>
@@ -55,7 +55,7 @@ export function ServiceGrid({ items }: { items: ServiceItem[] }) {
               sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
               className="object-cover grayscale brightness-[0.55] contrast-110 transition-[transform,filter] duration-700 group-hover:scale-110 group-hover:brightness-[0.35]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
 
             <div className="absolute inset-x-0 bottom-0 p-6">
               <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-accent-text opacity-0 transition-opacity duration-500 group-hover:opacity-100">

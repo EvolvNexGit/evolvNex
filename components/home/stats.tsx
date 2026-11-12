@@ -32,7 +32,7 @@ function Odometer({ value, suffix, active }: { value: number; suffix?: string; a
   const digits = String(value).split('').map(Number)
   return (
     <span
-      className="inline-flex items-baseline text-5xl font-semibold tracking-tight tabular-nums sm:text-7xl"
+      className="inline-flex items-baseline text-5xl font-black tracking-tight tabular-nums sm:text-6xl"
       role="text"
       aria-label={`${value}${suffix ?? ''}`}
     >
@@ -42,7 +42,10 @@ function Odometer({ value, suffix, active }: { value: number; suffix?: string; a
         ))}
       </span>
       {suffix && (
-        <span aria-hidden className="text-primary">
+        <span
+          aria-hidden
+          className={suffix.length > 2 ? 'ml-2 text-2xl font-black uppercase text-primary sm:text-3xl' : 'text-primary'}
+        >
           {suffix}
         </span>
       )}

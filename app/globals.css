@@ -9,9 +9,9 @@
  * (use sparingly), #242424 borders. Accent #DC2626 used deliberately.
  */
 :root {
-  --background: #0c0c0c;
+  --background: #0a0a0a;
   --foreground: #ffffff;
-  --card: #111111;
+  --card: #0f0f0f;
   --card-foreground: #ffffff;
   --popover: #111111;
   --popover-foreground: #ffffff;
@@ -24,10 +24,10 @@
   --subtle: #6b7280; /* muted text: decorative / non-essential only (4.0:1) */
   --accent: #171717;
   --accent-foreground: #ffffff;
-  --accent-text: #ef4444; /* red for small text: 5.2:1 on #0C0C0C */
+  --accent-text: #ff3b3b; /* brand highlight red (logo / nav), small text */
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #242424;
+  --border: #27272a;
   --input: #242424;
   --ring: #dc2626;
 
@@ -75,10 +75,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1rem;
+  /* Brand: sharp corners (as on the original EvolvNex site) */
+  --radius-sm: 0rem;
+  --radius-md: 0rem;
+  --radius-lg: 0rem;
+  --radius-xl: 0rem;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -177,17 +178,25 @@
   0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); }
   50% { transform: translate3d(-8%, -6%, 0) scale(1); }
 }
-@keyframes grid-pan {
-  from { background-position: 0 0, 0 0; }
-  to { background-position: 64px 64px, 64px 64px; }
-}
 .hero-grid {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(255 255 255 / 0.085) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.085) 1px, transparent 1px);
   background-size: 64px 64px;
-  animation: grid-pan 14s linear infinite;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 75%);
+}
+.grid-mask {
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 35%, transparent 85%);
+}
+/* Original site pattern, used by "How we work" */
+.diagonal-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(255, 255, 255, 0.01) 40px,
+    rgba(255, 255, 255, 0.01) 80px
+  );
 }
 .flip-scene { perspective: 1400px; }
 .flip-card {
