@@ -11,7 +11,7 @@ const DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 /** One rolling digit column (odometer). */
 function Digit({ digit, active, delay }: { digit: number; active: boolean; delay: number }) {
   return (
-    <span className="relative inline-block h-[1em] w-[0.62em] overflow-hidden leading-none">
+    <span className="relative inline-block h-[1em] w-[0.68em] overflow-hidden">
       <motion.span
         className="absolute inset-x-0 top-0 flex flex-col"
         initial={{ y: 0 }}
@@ -19,7 +19,7 @@ function Digit({ digit, active, delay }: { digit: number; active: boolean; delay
         transition={{ duration: 1.8, delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {DIGITS.map((d) => (
-          <span key={d} className="block h-[1em] text-center leading-none">
+          <span key={d} className="block h-[1em] text-center">
             {d}
           </span>
         ))}
@@ -28,15 +28,19 @@ function Digit({ digit, active, delay }: { digit: number; active: boolean; delay
   )
 }
 
+/**
+ * Number and suffix share one font, one size and one line box (line-height 1,
+ * bottom aligned), so every stat sits on the same baseline.
+ */
 function Odometer({ value, suffix, active }: { value: number; suffix?: string; active: boolean }) {
   const digits = String(value).split('').map(Number)
   return (
     <span
-      className="inline-flex items-baseline text-5xl font-black tracking-tight tabular-nums sm:text-6xl"
+      className="font-display flex items-end gap-1.5 text-5xl leading-none sm:text-6xl"
       role="text"
-      aria-label={`${value}${suffix ?? ''}`}
+      aria-label={`${value}${suffix ? ` ${suffix}` : ''}`}
     >
-      <span aria-hidden className="inline-flex">
+      <span aria-hidden className="flex">
         {digits.map((d, i) => (
           <Digit key={i} digit={d} active={active} delay={i * 0.12} />
         ))}
@@ -44,7 +48,11 @@ function Odometer({ value, suffix, active }: { value: number; suffix?: string; a
       {suffix && (
         <span
           aria-hidden
-          className={suffix.length > 2 ? 'ml-2 text-2xl font-black uppercase text-primary sm:text-3xl' : 'text-primary'}
+          className={
+            suffix.length > 1
+              ? 'mb-[0.16em] text-[0.42em] text-primary uppercase'
+              : 'text-primary uppercase'
+          }
         >
           {suffix}
         </span>
@@ -60,16 +68,17 @@ export function Stats({ stats }: { stats: Stat[] }) {
   return (
     <section aria-label="EvolvNex at a glance" className="border-b border-border">
       <Container>
-        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4">
-          {stats.map((s, i) => (
+        <div
+          ref={ref}
+          className="grid grid-cols-2 border-l border-border lg:grid-cols-4 [&>*:nth-child(-n+2)]:border-b lg:[&>*:nth-child(-n+2)]:border-b-0"
+        >
+          {stats.map((s) => (
             <div
               key={s.label}
-              className={`py-12 pr-4 sm:py-16 ${i % 2 === 1 ? 'border-l border-border pl-5' : ''} ${
-                i > 0 ? 'lg:border-l lg:border-border lg:pl-8' : ''
-              }`}
+              className="flex flex-col items-start gap-4 border-r border-border px-5 py-8 sm:px-8 sm:py-10"
             >
               <Odometer value={s.value} suffix={s.suffix} active={inView} />
-              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="font-sub text-xs font-bold uppercase tracking-[0.2em] text-sand">
                 {s.label}
               </p>
             </div>

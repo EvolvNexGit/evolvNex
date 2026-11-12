@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -22,7 +22,7 @@ function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2" aria-label="EvolvNex home">
       <Image src="/symbol.png" alt="" width={28} height={28} priority />
-      <span className="text-xl font-extrabold tracking-tight">
+      <span className="font-display text-xl">
         EVOLV<span className="text-primary">NEX</span>
       </span>
     </Link>
@@ -36,9 +36,23 @@ function isActive(pathname: string, href: string) {
 export function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-sm">
+    <header
+      className={cn(
+        'sticky top-0 z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300',
+        // transparent at all times; a light blur keeps nav text readable over content
+        scrolled ? 'border-white/10 bg-background/20 backdrop-blur-md' : 'border-transparent bg-transparent',
+      )}
+    >
       <Container className="flex h-16 items-center justify-between md:h-[72px]">
         <Logo />
 

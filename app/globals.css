@@ -9,7 +9,7 @@
  * (use sparingly), #242424 borders. Accent #DC2626 used deliberately.
  */
 :root {
-  --background: #0a0a0a;
+  --background: #0c0c0c;
   --foreground: #ffffff;
   --card: #0f0f0f;
   --card-foreground: #ffffff;
@@ -21,6 +21,7 @@
   --secondary-foreground: #ffffff;
   --muted: #171717;
   --muted-foreground: #9ca3af;
+  --sand: #cdbeb0; /* brand beige: secondary accent, labels */
   --subtle: #6b7280; /* muted text: decorative / non-essential only (4.0:1) */
   --accent: #171717;
   --accent-foreground: #ffffff;
@@ -51,9 +52,11 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-heading: var(--font-inter), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-gabarito), system-ui, sans-serif;
+  --font-heading: var(--font-fugaz), var(--font-gabarito), system-ui, sans-serif;
+  --font-subheading: var(--font-sansation), var(--font-gabarito), system-ui, sans-serif;
+  --font-body: var(--font-gabarito), system-ui, sans-serif;
+  --color-sand: var(--sand);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -178,25 +181,35 @@
   0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); }
   50% { transform: translate3d(-8%, -6%, 0) scale(1); }
 }
-.hero-grid {
+/* Site-wide grid (fixed layer behind every page): light and subtle */
+.site-grid {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.085) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.085) 1px, transparent 1px);
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
   background-size: 64px 64px;
 }
-.grid-mask {
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 35%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 35%, transparent 85%);
+
+/* Brand typography. Unlayered on purpose so it wins over weight/tracking utilities. */
+h1,
+h2,
+.font-display {
+  font-family: var(--font-fugaz), var(--font-gabarito), system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
-/* Original site pattern, used by "How we work" */
-.diagonal-stripes {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 40px,
-    rgba(255, 255, 255, 0.01) 40px,
-    rgba(255, 255, 255, 0.01) 80px
-  );
+h3,
+h4,
+.font-sub {
+  font-family: var(--font-sansation), var(--font-gabarito), system-ui, sans-serif;
+}
+.eyebrow {
+  font-family: var(--font-sansation), var(--font-gabarito), system-ui, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent-text);
 }
 .flip-scene { perspective: 1400px; }
 .flip-card {

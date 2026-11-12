@@ -16,15 +16,13 @@ export function PageHero({
   children?: React.ReactNode
 }) {
   return (
-    <header className="border-b border-border pt-10 pb-14 md:pt-16 md:pb-20">
+    <header className="border-b border-border pt-8 pb-10 md:pt-12 md:pb-14">
       <Container>
         <Breadcrumbs items={crumbs} />
         {eyebrow && (
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-accent-text">
-            {eyebrow}
-          </p>
+          <p className="eyebrow mb-3">{eyebrow}</p>
         )}
-        <h1 className="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
+        <h1 className="max-w-3xl text-3xl leading-tight uppercase sm:text-[2.75rem]">{title}</h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{lead}</p>
         {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
       </Container>

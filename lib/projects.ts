@@ -8,6 +8,8 @@ export type Project = {
   name: string
   /** Neutral descriptor derived from the project name; omit when unclear. */
   type?: string
+  /** Live website. When set, the showroom cell opens it in a new tab. */
+  url?: string
   images: { src: string; alt: string }[]
 }
 

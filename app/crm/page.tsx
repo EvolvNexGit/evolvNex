@@ -1,11 +1,21 @@
-import { UtensilsCrossed, Stethoscope } from 'lucide-react'
+import {
+  UtensilsCrossed,
+  Stethoscope,
+  Users,
+  CalendarClock,
+  ReceiptText,
+  ShieldCheck,
+  BellRing,
+  BarChart3,
+} from 'lucide-react'
 import { buildMetadata } from '@/lib/seo'
 import { Container, Section } from '@/components/site/container'
 import { PageHero } from '@/components/site/page-hero'
 import { ButtonLink } from '@/components/site/button-link'
 import { Reveal } from '@/components/site/reveal'
 import { SectionHeading } from '@/components/site/section-heading'
-import { FeatureList, ScopeNote } from '@/components/site/feature-list'
+import { ScopeNote } from '@/components/site/feature-list'
+import { ModuleGrid, type Module } from '@/components/site/module-grid'
 import { IndustryPanel } from '@/components/site/industry-panel'
 import { FAQ } from '@/components/site/faq'
 import { CTA } from '@/components/site/cta'
@@ -17,6 +27,39 @@ export const metadata = buildMetadata({
     'EvolvNex builds custom CRM and business management systems for customers, appointments, transactions, products and staff workflows, including food business and healthcare CRM.',
   path: '/crm',
 })
+
+const modules: Module[] = [
+  {
+    icon: Users,
+    title: 'Customer records',
+    text: 'Every customer, their details and full interaction history in one place.',
+  },
+  {
+    icon: CalendarClock,
+    title: 'Appointments',
+    text: 'Bookings and scheduling that stay organised as your day fills up.',
+  },
+  {
+    icon: ReceiptText,
+    title: 'Billing & products',
+    text: 'Transactions, billing and product management without manual spreadsheets.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Staff workflows',
+    text: 'Clear staff workflows with role-based access to the right information.',
+  },
+  {
+    icon: BellRing,
+    title: 'Reminders & follow-ups',
+    text: 'Reminders, follow-ups and WhatsApp communication where consent is in place.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Reporting',
+    text: 'Reporting scoped to the numbers you actually need to run the business.',
+  },
+]
 
 const faqs = [
   {
@@ -48,30 +91,23 @@ export default function CrmPage() {
       </PageHero>
 
       <Section>
-        <Container className="grid gap-12 lg:grid-cols-2">
+        <Container>
           <Reveal>
             <SectionHeading
+              eyebrow="Modules"
               title="What these systems help you manage"
               description="Modules are chosen per business. Common building blocks:"
             />
           </Reveal>
-          <Reveal delay={0.08} className="space-y-6">
-            <FeatureList
-              columns={1}
-              items={[
-                'Customer records and interaction history',
-                'Appointments and scheduling',
-                'Transactions, billing and product management',
-                'Staff workflows and role-based access',
-                'Reminders, follow-ups and WhatsApp communication where consent is in place',
-                'Reporting scoped to the numbers you need',
-              ]}
-            />
+          <div className="mt-10">
+            <ModuleGrid items={modules} />
+          </div>
+          <div className="mt-6">
             <ScopeNote>
               Features vary by deployment. We confirm what is live, configurable or custom-build
               for your project before committing to scope.
             </ScopeNote>
-          </Reveal>
+          </div>
         </Container>
       </Section>
 

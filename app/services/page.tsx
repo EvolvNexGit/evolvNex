@@ -1,12 +1,10 @@
-import Link from 'next/link'
-import { Globe, Palette, Database, Workflow, Search } from 'lucide-react'
 import { buildMetadata } from '@/lib/seo'
 import { Container, Section } from '@/components/site/container'
 import { PageHero } from '@/components/site/page-hero'
 import { ButtonLink } from '@/components/site/button-link'
-import { Reveal } from '@/components/site/reveal'
 import { SectionHeading } from '@/components/site/section-heading'
-import { FeatureList, ScopeNote } from '@/components/site/feature-list'
+import { ScopeNote } from '@/components/site/feature-list'
+import { ServiceGrid, type ServiceItem } from '@/components/home/service-grid'
 import { FAQ } from '@/components/site/faq'
 import { CTA } from '@/components/site/cta'
 
@@ -17,12 +15,13 @@ export const metadata = buildMetadata({
   path: '/services',
 })
 
-const services = [
+const services: ServiceItem[] = [
   {
     id: 'websites',
-    icon: Globe,
+    image: '/images/home/websites.jpg',
+    tagline: 'Websites',
     title: 'Website development',
-    text: 'Responsive business websites that explain your offer clearly, build trust and turn visits into enquiries, bookings or sales.',
+    description: 'Responsive business websites that explain your offer clearly, build trust and turn visits into enquiries, bookings or sales.',
     points: [
       'Clear information architecture',
       'Custom design aligned to your brand',
@@ -30,43 +29,42 @@ const services = [
       'Forms, booking, CRM or WhatsApp integrations where supported',
     ],
     href: '/services/website-development',
-    cta: 'Website development',
   },
   {
     id: 'branding',
-    icon: Palette,
+    image: '/images/home/branding.jpg',
+    tagline: 'Visual identity',
     title: 'Branding',
-    text: 'Brand identity and visual direction that make a business consistent and recognisable across its website and customer experience.',
+    description: 'Brand identity and visual direction that make a business consistent and recognisable across its website and customer experience.',
     points: ['Visual identity and logo direction', 'Colour and typography systems', 'Brand guidelines'],
     href: '/branding',
-    cta: 'Branding',
   },
   {
     id: 'crm',
-    icon: Database,
+    image: '/images/home/crm.jpg',
+    tagline: 'Business systems',
     title: 'Custom CRM & business systems',
-    text: 'Purpose-built tools for customers, appointments, transactions, products, staff and daily workflows, including dedicated systems for food businesses and clinics.',
+    description: 'Purpose-built tools for customers, appointments, transactions, products, staff and daily workflows, including dedicated systems for food businesses and clinics.',
     points: ['Customer and transaction records', 'Industry workflows for food and healthcare', 'Reporting scoped to your needs'],
     href: '/crm',
-    cta: 'CRM & business systems',
   },
   {
     id: 'automation',
-    icon: Workflow,
+    image: '/images/home/automation.jpg',
+    tagline: 'Automation',
     title: 'WhatsApp & workflow automation',
-    text: 'Consent-aware reminders, communication and follow-up workflows that reduce repetitive manual work.',
+    description: 'Consent-aware reminders, communication and follow-up workflows that reduce repetitive manual work.',
     points: ['Appointment and follow-up reminders', 'Lead follow-up workflows', 'Opt-in and opt-out handling'],
     href: '/contact',
-    cta: 'Discuss automation',
   },
   {
     id: 'seo',
-    icon: Search,
+    image: '/images/home/seo.jpg',
+    tagline: 'Search visibility',
     title: 'SEO foundations',
-    text: 'Search-friendly site structure and content foundations that improve how clearly your business can be found and understood. We build the foundation; we do not promise rankings.',
+    description: 'Search-friendly site structure and content foundations that improve how clearly your business can be found and understood. We build the foundation; we do not promise rankings.',
     points: ['Clean page structure and metadata', 'Sitemap, canonical URLs and structured data', 'Fast, accessible pages'],
     href: '/services/website-development',
-    cta: 'Included with websites',
   },
 ]
 
@@ -104,27 +102,12 @@ export default function ServicesPage() {
       </PageHero>
 
       <Section>
-        <Container className="space-y-16">
-          {services.map((s) => (
-            <Reveal key={s.id}>
-              <section id={s.id} className="grid gap-8 border-t border-border pt-10 lg:grid-cols-[1fr_1.2fr]">
-                <div>
-                  <s.icon className="size-8 text-accent-text" strokeWidth={1.5} aria-hidden />
-                  <h2 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl">{s.title}</h2>
-                  <p className="mt-3 text-muted-foreground">{s.text}</p>
-                </div>
-                <div className="space-y-6">
-                  <FeatureList columns={1} items={s.points} />
-                  <Link
-                    href={s.href}
-                    className="inline-flex text-sm font-semibold text-accent-text hover:text-foreground"
-                  >
-                    {s.cta} →
-                  </Link>
-                </div>
-              </section>
-            </Reveal>
-          ))}
+        <Container className="space-y-10">
+          <ServiceGrid
+            items={services}
+            eyebrow="What we do"
+            heading="Five services, one connected system"
+          />
           <ScopeNote>
             Deliverables are confirmed in writing for each project. We do not promise search
             rankings, guaranteed leads or fixed conversion lifts.

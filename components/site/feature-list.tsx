@@ -17,7 +17,7 @@ export function FeatureList({ items, columns = 2 }: { items: string[]; columns?:
 /** Honest-scope callout used on CRM / service pages. */
 export function ScopeNote({ children }: { children: React.ReactNode }) {
   return (
-    <p className="rounded-lg border border-border bg-secondary px-5 py-4 text-sm leading-relaxed text-muted-foreground">
+    <p className="border border-border border-l-2 border-l-primary bg-card px-5 py-4 text-sm leading-relaxed text-muted-foreground">
       {children}
     </p>
   )

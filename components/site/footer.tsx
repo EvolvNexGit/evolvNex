@@ -4,11 +4,11 @@ import { FOOTER_LINKS, SITE, whatsappUrl } from '@/lib/site'
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-border bg-background/60">
       <Container className="py-14 md:py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="max-w-sm">
-            <Link href="/" className="text-xl font-extrabold tracking-tight">
+            <Link href="/" className="font-display text-xl">
               EVOLV<span className="text-primary">NEX</span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

@@ -17,9 +17,15 @@ export function IndustryPanel({
   cta: string
 }) {
   return (
-    <article className="flex h-full flex-col rounded-lg border border-border bg-card p-6 sm:p-8">
-      <Icon className="size-7 text-accent-text" strokeWidth={1.5} aria-hidden />
-      <h3 className="mt-5 text-2xl font-semibold tracking-tight">{title}</h3>
+    <article className="group/panel relative flex h-full flex-col overflow-hidden border border-border bg-card p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-primary sm:p-8">
+      <span
+        aria-hidden
+        className="absolute top-0 left-0 h-0.5 w-full origin-left scale-x-0 bg-primary transition-transform duration-500 group-hover/panel:scale-x-100"
+      />
+      <span className="inline-flex size-12 items-center justify-center border border-border text-accent-text transition-colors duration-300 group-hover/panel:border-primary group-hover/panel:bg-primary group-hover/panel:text-white">
+        <Icon className="size-5" strokeWidth={1.5} aria-hidden />
+      </span>
+      <h3 className="mt-5 text-xl font-bold tracking-wide uppercase">{title}</h3>
       <p className="mt-3 text-muted-foreground">{description}</p>
       <ul className="mt-5 flex-1 space-y-2.5">
         {points.map((p) => (

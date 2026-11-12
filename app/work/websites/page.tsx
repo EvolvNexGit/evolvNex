@@ -5,6 +5,7 @@ import { PageHero } from '@/components/site/page-hero'
 import { ButtonLink } from '@/components/site/button-link'
 import { Reveal } from '@/components/site/reveal'
 import { ProjectCard } from '@/components/site/project-card'
+import { GridShowroom } from '@/components/site/grid-showroom'
 import { CTA } from '@/components/site/cta'
 import { TextLink } from '@/components/site/text-link'
 
@@ -24,7 +25,8 @@ export default function WebsiteShowcasePage() {
         title="Websites we have built"
         lead="A selection of business websites designed and developed by EvolvNex. Select any project to view its screenshots."
       >
-        <ButtonLink href="/contact" arrow>
+        <GridShowroom projects={PROJECTS} />
+        <ButtonLink href="/contact" variant="secondary" arrow>
           Discuss a Project
         </ButtonLink>
       </PageHero>

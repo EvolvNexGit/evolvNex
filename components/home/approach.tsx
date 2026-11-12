@@ -36,22 +36,18 @@ const steps = [
 
 export function Approach() {
   return (
-    <section id="approach" className="relative overflow-hidden py-32">
-      <div className="diagonal-stripes absolute inset-0" />
-
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="grid items-start gap-16 lg:grid-cols-2">
+    <section id="approach" className="relative border-y border-border py-12 md:py-16">
+      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-8">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Left - sticky heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:sticky lg:top-32"
+            className="lg:sticky lg:top-28"
           >
-            <p className="mb-3 text-sm font-bold uppercase tracking-widest text-primary">
-              How We Work
-            </p>
-            <h2 className="mb-6 text-4xl font-black uppercase tracking-tight sm:text-5xl">
+            <p className="eyebrow mb-3">How We Work</p>
+            <h2 className="mb-5 text-3xl leading-tight uppercase sm:text-4xl">
               A Structured Approach To Growth
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
@@ -61,7 +57,7 @@ export function Approach() {
           </motion.div>
 
           {/* Right - steps: each card rises on its own as it scrolls into view */}
-          <ol className="space-y-8">
+          <ol className="space-y-5">
             {steps.map((step) => (
               <motion.li
                 key={step.title}
@@ -73,7 +69,7 @@ export function Approach() {
               >
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <span className="inline-block text-5xl font-black text-primary/20 transition-all duration-150 ease-out group-hover:scale-105 group-hover:text-primary/50">
+                    <span className="font-display inline-block text-5xl text-primary/20 transition-all duration-150 ease-out group-hover:scale-105 group-hover:text-primary/50">
                       {step.number}
                     </span>
                   </div>

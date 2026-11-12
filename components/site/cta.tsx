@@ -2,9 +2,10 @@ import { ArrowRight, Mail, Phone } from 'lucide-react'
 import { Container } from './container'
 import { ButtonLink } from './button-link'
 import { Reveal } from './reveal'
+import { Comets } from './comets'
 import { SITE, whatsappUrl } from '@/lib/site'
 
-/** Quiet closing CTA: one bordered panel, no glow. */
+/** Quiet closing CTA: one bordered panel on the grid, with its own travelling red dot. */
 export function CTA({
   title = "Let's build something that works.",
   description = 'Tell us what you want to launch or fix. We reply with clear next steps, no obligation.',
@@ -17,17 +18,16 @@ export function CTA({
   primaryHref?: string
 }) {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 md:py-16">
       <Container>
         <Reveal className="relative overflow-hidden border border-border bg-card">
-          <div aria-hidden className="hero-grid grid-mask absolute inset-0 opacity-50" />
+          <div aria-hidden className="site-grid absolute inset-0" />
+          <Comets count={1} cell={64} />
           <span aria-hidden className="absolute top-0 left-0 h-px w-24 bg-primary" />
           <div className="relative grid gap-10 p-8 sm:p-12 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:p-16">
             <div>
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-accent-text">
-                Start a project
-              </p>
-              <h2 className="text-3xl font-black tracking-tight uppercase sm:text-4xl">{title}</h2>
+              <p className="eyebrow mb-4">Start a project</p>
+              <h2 className="text-3xl leading-tight uppercase sm:text-4xl">{title}</h2>
               <p className="mt-4 max-w-lg text-muted-foreground">{description}</p>
             </div>
             <div className="flex flex-col gap-6 lg:items-end">

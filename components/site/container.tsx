@@ -22,8 +22,8 @@ export function Section({
   return (
     <section
       className={cn(
-        'py-16 md:py-24',
-        tone === 'surface' && 'border-y border-border bg-card',
+        'py-12 md:py-16',
+        tone === 'surface' && 'border-y border-border bg-card/50',
         className,
       )}
       {...props}

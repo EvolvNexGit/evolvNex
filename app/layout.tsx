@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Fugaz_One, Gabarito, Sansation } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
@@ -7,16 +7,22 @@ import WhatsAppButton from '@/components/whatsapp-button'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
 import { Providers } from '@/components/site/providers'
+import { SiteBackground } from '@/components/site/site-background'
 import { JsonLd } from '@/components/site/json-ld'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo'
 import { SITE } from '@/lib/site'
 import './globals.css'
 
-const inter = Inter({
+// Brand typography (EvolvNex brand guidelines):
+// Fugaz One = headings, Sansation = sub-headings, Gabarito = paragraph.
+const fugaz = Fugaz_One({ subsets: ['latin'], weight: '400', variable: '--font-fugaz', display: 'swap' })
+const sansation = Sansation({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '700'],
+  variable: '--font-sansation',
   display: 'swap',
 })
+const gabarito = Gabarito({ subsets: ['latin'], variable: '--font-gabarito', display: 'swap' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -45,7 +51,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body
+        className={`${fugaz.variable} ${sansation.variable} ${gabarito.variable} font-sans antialiased`}
+      >
+        <SiteBackground />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"

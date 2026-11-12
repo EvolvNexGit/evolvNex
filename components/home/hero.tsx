@@ -5,46 +5,45 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { Container } from '@/components/site/container'
 import { ButtonLink } from '@/components/site/button-link'
-import { GridBackground } from './grid-background'
 
 const LINES = ['Digital systems', 'that move business', 'forward.']
 
+/** Background grid + travelling dots come from the site-wide <SiteBackground />. */
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[92svh] items-center overflow-hidden border-b border-border"
+      className="relative flex min-h-[78svh] items-center overflow-hidden border-b border-border"
     >
-      <motion.div aria-hidden style={{ y: bgY }} className="absolute inset-0">
-        <GridBackground comets={2} />
-        {/* single faint brand glow */}
-        <div className="absolute -top-1/3 -left-1/4 size-[55vw] rounded-full bg-primary/[0.06] blur-[160px]" />
-      </motion.div>
+      {/* single faint brand glow */}
+      <div
+        aria-hidden
+        className="absolute -top-1/3 -left-1/4 size-[55vw] rounded-full bg-primary/[0.05] blur-[160px]"
+      />
 
-      <Container className="relative pt-24 pb-24">
+      <Container className="relative py-20">
         <motion.div style={{ y, opacity }}>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-accent-text"
+            className="eyebrow mb-6 flex items-center gap-3"
           >
             <span className="h-px w-10 bg-primary" aria-hidden />
             Websites · Branding · CRM
           </motion.p>
 
-          <h1 className="text-[clamp(2rem,4.8vw,4rem)] leading-[1] font-black tracking-tight uppercase">
+          <h1 className="text-[clamp(2rem,4.8vw,4rem)] leading-[1.05] uppercase">
             {LINES.map((line, i) => (
-              <span key={line} className="block overflow-hidden pb-[0.06em]">
+              <span key={line} className="block overflow-hidden pr-[0.15em] pb-[0.08em]">
                 <motion.span
                   className={`block ${i === 2 ? 'text-primary' : ''}`}
-                  initial={{ y: '105%' }}
+                  initial={{ y: '110%' }}
                   animate={{ y: 0 }}
                   transition={{ delay: 0.3 + i * 0.12, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                 >
@@ -77,7 +76,7 @@ export function Hero() {
 
       <div
         aria-hidden
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground sm:flex"
+        className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground sm:flex"
       >
         Scroll
         <ArrowDown className="size-4 animate-bounce" />
