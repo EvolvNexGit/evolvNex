@@ -11,7 +11,7 @@ import { ScrollProgress } from '@/components/home/scroll-progress'
 import { Stats, type Stat } from '@/components/home/stats'
 import { MarqueeBar } from '@/components/home/marquee-bar'
 import { ServiceGrid, type ServiceItem } from '@/components/home/service-grid'
-import { ProjectMarquee } from '@/components/home/project-marquee'
+import { HomeGrid } from '@/components/site/grid-showroom'
 import { IndustryFlip, type IndustryItem } from '@/components/home/industry-flip'
 import { Approach } from '@/components/home/approach'
 
@@ -73,8 +73,15 @@ const services: ServiceItem[] = [
   },
 ]
 
-/** Top attractions: 4 hand-picked projects. */
-const TOP_SLUGS = ['k-fitness', 'regain-clinic', '24k-springs-salon', 'studio11-salon-spa']
+/** Top attractions: 6 hand-picked projects shown in the home grid. */
+const TOP_SLUGS = [
+  'k-fitness',
+  'regain-clinic',
+  '24k-springs-salon',
+  'studio11-salon-spa',
+  'av-fitness',
+  'denson-unisex-salon',
+]
 
 const industries: IndustryItem[] = [
   {
@@ -124,17 +131,21 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Top attractions */}
-      <Section className="overflow-hidden">
+      {/* Top attractions: the website grid */}
+      <Section>
         <Container>
-          <Reveal className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionHeading eyebrow="Top attractions" title="Builds we are proud of" />
+          <Reveal className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <SectionHeading
+              eyebrow="Top attractions"
+              title="Builds we are proud of"
+              description="Hover the grid to reveal each site."
+            />
             <ButtonLink href="/work/websites" variant="link" arrow>
               View all websites
             </ButtonLink>
           </Reveal>
+          <HomeGrid featured={top} all={PROJECTS} />
         </Container>
-        <ProjectMarquee projects={top} />
       </Section>
 
       {/* How we work: identical to the original evolvnex.com section */}

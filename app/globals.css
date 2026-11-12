@@ -189,6 +189,34 @@
   background-size: 64px 64px;
 }
 
+/* Website grid board (square cells). Spotlight vars animate via @property. */
+@property --mx { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --my { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --srx { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --sry { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --hrx { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --hry { syntax: '<length>'; inherits: true; initial-value: 0px; }
+.grid-board {
+  background-color: var(--background);
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.09) 1px, transparent 1px);
+  background-size: calc(100% / var(--cols)) calc(100% / var(--rows));
+  transition:
+    --mx 350ms var(--ease-out),
+    --my 350ms var(--ease-out),
+    --srx 450ms var(--ease-out),
+    --sry 450ms var(--ease-out),
+    --hrx 450ms var(--ease-out),
+    --hry 450ms var(--ease-out);
+}
+.grid-board-lines-hot {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.45) 1px, transparent 1px);
+  background-size: calc(100% / var(--cols)) calc(100% / var(--rows));
+}
+
 /* Brand typography. Unlayered on purpose so it wins over weight/tracking utilities. */
 h1,
 h2,

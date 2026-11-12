@@ -2,10 +2,10 @@ import { ArrowRight, Mail, Phone } from 'lucide-react'
 import { Container } from './container'
 import { ButtonLink } from './button-link'
 import { Reveal } from './reveal'
-import { Comets } from './comets'
+import { ZoneComets } from './zone-comets'
 import { SITE, whatsappUrl } from '@/lib/site'
 
-/** Quiet closing CTA: one bordered panel on the grid, with its own travelling red dot. */
+/** Quiet closing CTA: a glass panel over the site grid, with red dots travelling the grid around it. */
 export function CTA({
   title = "Let's build something that works.",
   description = 'Tell us what you want to launch or fix. We reply with clear next steps, no obligation.',
@@ -18,11 +18,10 @@ export function CTA({
   primaryHref?: string
 }) {
   return (
-    <section className="py-12 md:py-16">
+    <section className="relative py-12 md:py-16">
+      <ZoneComets count={2} />
       <Container>
-        <Reveal className="relative overflow-hidden border border-border bg-card">
-          <div aria-hidden className="site-grid absolute inset-0" />
-          <Comets count={1} cell={64} />
+        <Reveal className="relative overflow-hidden border border-white/10 bg-white/[0.025] shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_30px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-[3px]">
           <span aria-hidden className="absolute top-0 left-0 h-px w-24 bg-primary" />
           <div className="relative grid gap-10 p-8 sm:p-12 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:p-16">
             <div>

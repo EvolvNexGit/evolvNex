@@ -5,10 +5,11 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { Container } from '@/components/site/container'
 import { ButtonLink } from '@/components/site/button-link'
+import { ZoneComets } from '@/components/site/zone-comets'
 
 const LINES = ['Digital systems', 'that move business', 'forward.']
 
-/** Background grid + travelling dots come from the site-wide <SiteBackground />. */
+/** Grid comes from the site-wide <SiteBackground />; red dots run only inside the hero. */
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -20,6 +21,7 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-[78svh] items-center overflow-hidden border-b border-border"
     >
+      <ZoneComets count={2} />
       {/* single faint brand glow */}
       <div
         aria-hidden

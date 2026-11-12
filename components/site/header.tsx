@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -36,21 +36,45 @@ function isActive(pathname: string, href: string) {
 export function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const lastY = useRef(0)
 
+  // Hide on scroll down, reveal on scroll up. Small threshold avoids jitter.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
+    lastY.current = window.scrollY
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const y = window.scrollY
+        const dy = y - lastY.current
+        setScrolled(y > 8)
+        if (y < 80) setHidden(false)
+        else if (dy > 6) setHidden(true)
+        else if (dy < -6) setHidden(false)
+        if (Math.abs(dy) > 6) lastY.current = y
+        ticking = false
+      })
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // route change: always show the header again
+  useEffect(() => setHidden(false), [pathname])
+
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300',
-        // transparent at all times; a light blur keeps nav text readable over content
-        scrolled ? 'border-white/10 bg-background/20 backdrop-blur-md' : 'border-transparent bg-transparent',
+        'sticky top-0 z-40 border-b transition-[transform,background-color,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform',
+        hidden && !open ? '-translate-y-full' : 'translate-y-0',
+        // transparent at the top; a light translucent backing once scrolled so
+        // nav text never sits directly on page content
+        scrolled
+          ? 'border-white/[0.06] bg-background/75 backdrop-blur-md'
+          : 'border-transparent bg-transparent',
       )}
     >
       <Container className="flex h-16 items-center justify-between md:h-[72px]">
