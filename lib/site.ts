@@ -14,6 +14,7 @@ export const SITE = {
   phoneTel: '+919960083547',
   whatsappNumber: '919960083547',
   linkedin: 'https://www.linkedin.com/company/evolvnex/',
+  instagram: 'https://www.instagram.com/evolvnex',
   tagline: 'Digital systems that help businesses move forward.',
   shortDescription:
     'EvolvNex is a business technology and digital systems company offering website development, branding, custom CRM solutions and automation for businesses.',

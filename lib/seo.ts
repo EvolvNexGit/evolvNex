@@ -55,7 +55,7 @@ export const organizationJsonLd = {
   email: SITE.email,
   telephone: SITE.phoneTel,
   description: SITE.shortDescription,
-  sameAs: [SITE.linkedin],
+  sameAs: [SITE.linkedin, SITE.instagram],
 }
 
 export const websiteJsonLd = {

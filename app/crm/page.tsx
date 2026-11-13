@@ -16,8 +16,9 @@ import { Reveal } from '@/components/site/reveal'
 import { SectionHeading } from '@/components/site/section-heading'
 import { ScopeNote } from '@/components/site/feature-list'
 import { ModuleGrid, type Module } from '@/components/site/module-grid'
+import { DashboardMockup } from '@/components/site/dashboard-mockup'
+import { FaqSection } from '@/components/site/faq'
 import { IndustryPanel } from '@/components/site/industry-panel'
-import { FAQ } from '@/components/site/faq'
 import { CTA } from '@/components/site/cta'
 import { TextLink } from '@/components/site/text-link'
 
@@ -84,6 +85,7 @@ export default function CrmPage() {
         eyebrow="CRM & business systems"
         title="Custom CRM and business management systems"
         lead="Scattered customer records, missed follow-ups and manual billing slow a business down. We build purpose-built systems around the way you actually work."
+        aside={<DashboardMockup />}
       >
         <ButtonLink href="/contact" arrow>
           Request a Demo
@@ -126,6 +128,7 @@ export default function CrmPage() {
                 icon={UtensilsCrossed}
                 title="Food & Beverage CRM and POS"
                 description="Billing, products, inventory, customers, memberships and loyalty for cafés and restaurants."
+                image="/images/home/industry-food.jpg"
                 points={['Billing and POS workflows', 'Inventory and stock', 'Memberships and loyalty']}
                 href="/crm/food"
                 cta="Food business CRM"
@@ -136,6 +139,7 @@ export default function CrmPage() {
                 icon={Stethoscope}
                 title="Healthcare CRM"
                 description="Patient, appointment and follow-up workflows for clinics and healthcare providers."
+                image="/images/home/industry-health.jpg"
                 points={['Patient information', 'Appointments and calendar', 'Follow-ups and reminders']}
                 href="/crm/healthcare"
                 cta="Healthcare CRM"
@@ -147,11 +151,8 @@ export default function CrmPage() {
 
       <Section>
         <Container>
-          <SectionHeading title="Common questions" />
-          <div className="mt-8">
-            <FAQ items={faqs} />
-          </div>
-          <p className="mt-10 text-muted-foreground">
+          <FaqSection title="Common questions" items={faqs} />
+          <p className="mt-12 text-muted-foreground">
             Need a public-facing site as well? See{' '}
             <TextLink href="/services/website-development">website development</TextLink>.
           </p>

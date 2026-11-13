@@ -16,7 +16,7 @@ function Digit({ digit, active, delay }: { digit: number; active: boolean; delay
         className="absolute inset-x-0 top-0 flex flex-col"
         initial={{ y: 0 }}
         animate={{ y: active ? `${-digit * 10}%` : 0 }}
-        transition={{ duration: 1.8, delay, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 3.4, delay, ease: [0.22, 1, 0.36, 1] }}
       >
         {DIGITS.map((d) => (
           <span key={d} className="block h-[1em] text-center">
@@ -42,7 +42,7 @@ function Odometer({ value, suffix, active }: { value: number; suffix?: string; a
     >
       <span aria-hidden className="flex">
         {digits.map((d, i) => (
-          <Digit key={i} digit={d} active={active} delay={i * 0.12} />
+          <Digit key={i} digit={d} active={active} delay={i * 0.28} />
         ))}
       </span>
       {suffix && (

@@ -31,10 +31,9 @@ export default function WebsiteShowcasePage() {
 
       <Section>
         <Container>
-          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            In the grid: {PROJECTS.map((p) => p.name).join(', ')}. Project details such as scope are
-            shared on request. Want something similar? Read about our{' '}
-            <TextLink href="/services/website-development">website development service</TextLink>.
+          <p className="max-w-xl text-muted-foreground">
+            Project details and live links are shared on request. Want something similar? Explore
+            our <TextLink href="/services/website-development">website development service</TextLink>.
           </p>
         </Container>
       </Section>

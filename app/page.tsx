@@ -24,12 +24,12 @@ export const metadata = buildMetadata({
 
 /**
  * TODO (business): these figures are derived from what is in this repo
- * (9 published website projects, 5 service lines, 2 industry CRMs).
+ * (5 service lines, 2 industry CRMs). '15+ projects' was supplied by the business.
  * '7 Days delivery guarantee' was requested by the business; confirm its terms.
  * Replace with confirmed numbers (clients, years, projects) before launch.
  */
 const stats: Stat[] = [
-  { value: 9, suffix: '+', label: 'Websites delivered' },
+  { value: 15, suffix: '+', label: 'Projects delivered' },
   { value: 5, label: 'Core services' },
   { value: 2, label: 'Industry CRMs' },
   { value: 7, suffix: 'Days', label: 'Delivery guarantee' },

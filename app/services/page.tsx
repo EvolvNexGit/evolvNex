@@ -2,10 +2,11 @@ import { buildMetadata } from '@/lib/seo'
 import { Container, Section } from '@/components/site/container'
 import { PageHero } from '@/components/site/page-hero'
 import { ButtonLink } from '@/components/site/button-link'
-import { SectionHeading } from '@/components/site/section-heading'
 import { ScopeNote } from '@/components/site/feature-list'
 import { ServiceGrid, type ServiceItem } from '@/components/home/service-grid'
-import { FAQ } from '@/components/site/faq'
+import { FaqSection } from '@/components/site/faq'
+import { JsonLd } from '@/components/site/json-ld'
+import { GENERAL_FAQS } from '@/lib/faqs'
 import { CTA } from '@/components/site/cta'
 
 export const metadata = buildMetadata({
@@ -68,28 +69,20 @@ const services: ServiceItem[] = [
   },
 ]
 
-const faqs = [
-  {
-    q: 'Do you only build websites?',
-    a: 'No. Websites are one part of what we do. We also work on brand identity, custom CRM and business systems, and workflow automation, so your presence and your operations can work together.',
-  },
-  {
-    q: 'How do you work with clients?',
-    a: 'We work remotely. After an initial conversation we agree scope, build in reviewable stages and share progress as we go.',
-  },
-  {
-    q: 'What does it cost and how long does it take?',
-    a: 'It depends on scope. We prefer to understand your requirement first and then share a clear proposal, rather than quote generic packages. Use the contact page to start that conversation.',
-  },
-  {
-    q: 'Is every CRM feature ready to use off the shelf?',
-    a: 'Not necessarily. Depending on the feature, a solution may be custom-built, configured or integrated. We confirm which applies to your project before work begins.',
-  },
-]
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: GENERAL_FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={faqJsonLd} />
       <PageHero
         crumbs={[{ name: 'Services', href: '/services' }]}
         eyebrow="Services"
@@ -117,10 +110,11 @@ export default function ServicesPage() {
 
       <Section tone="surface">
         <Container>
-          <SectionHeading title="Common questions" />
-          <div className="mt-8">
-            <FAQ items={faqs} />
-          </div>
+          <FaqSection
+            title="Common questions"
+            description="Straight answers on how we work, what to expect and what we do and do not promise."
+            items={GENERAL_FAQS}
+          />
         </Container>
       </Section>
 
