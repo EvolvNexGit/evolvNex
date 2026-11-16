@@ -47,7 +47,7 @@ export function absoluteUrl(path: string) {
 
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': ['Organization', 'ProfessionalService'],
   '@id': `${SITE.url}/#organization`,
   name: SITE.name,
   url: SITE.url,
@@ -56,6 +56,22 @@ export const organizationJsonLd = {
   telephone: SITE.phoneTel,
   description: SITE.shortDescription,
   sameAs: [SITE.linkedin, SITE.instagram],
+  areaServed: 'IN',
+  knowsAbout: [
+    'Website development',
+    'Branding',
+    'Custom CRM software',
+    'Restaurant and cafe POS software',
+    'Healthcare clinic CRM',
+    'WhatsApp and workflow automation',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    telephone: SITE.phoneTel,
+    email: SITE.email,
+    availableLanguage: ['English', 'Hindi'],
+  },
 }
 
 export const websiteJsonLd = {
@@ -64,5 +80,6 @@ export const websiteJsonLd = {
   '@id': `${SITE.url}/#website`,
   name: SITE.name,
   url: SITE.url,
+  inLanguage: 'en-IN',
   publisher: { '@id': `${SITE.url}/#organization` },
 }

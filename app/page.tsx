@@ -16,7 +16,7 @@ import { IndustryFlip, type IndustryItem } from '@/components/home/industry-flip
 import { Approach } from '@/components/home/approach'
 
 export const metadata = buildMetadata({
-  title: 'EvolvNex | Websites, Branding, CRM & Business Automation',
+  title: 'Websites, Branding, CRM & Business Automation',
   description:
     'EvolvNex builds business websites, brand identities, custom CRM and business systems, and workflow automation for growing businesses, delivered remotely.',
   path: '/',

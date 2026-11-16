@@ -67,7 +67,7 @@ export function Footer() {
 
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <nav key={title} aria-label={title}>
-              <h2 className="text-sm font-semibold">{title}</h2>
+              <p className="text-sm font-semibold">{title}</p>
               <ul className="mt-4 space-y-3">
                 {links.map((link) => (
                   <li key={link.href}>

@@ -35,9 +35,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
+    image: absoluteUrl('/opengraph-image'),
+    inLanguage: 'en-IN',
     datePublished: post.published,
     dateModified: post.updated ?? post.published,
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),

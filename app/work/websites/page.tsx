@@ -8,7 +8,7 @@ import { CTA } from '@/components/site/cta'
 import { TextLink } from '@/components/site/text-link'
 
 export const metadata = buildMetadata({
-  title: 'Website Showcase: Salon, Fitness & Clinic Websites',
+  title: 'Website Showcase: Salon, Fitness & Clinic Sites',
   description:
     'Examples of business websites built by EvolvNex for salons, fitness studios, clinics and other local businesses. Select a project to view screenshots.',
   path: '/work/websites',

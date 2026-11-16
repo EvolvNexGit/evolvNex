@@ -5,12 +5,11 @@ import { ButtonLink } from '@/components/site/button-link'
 import { ScopeNote } from '@/components/site/feature-list'
 import { ServiceGrid, type ServiceItem } from '@/components/home/service-grid'
 import { FaqSection } from '@/components/site/faq'
-import { JsonLd } from '@/components/site/json-ld'
 import { GENERAL_FAQS } from '@/lib/faqs'
 import { CTA } from '@/components/site/cta'
 
 export const metadata = buildMetadata({
-  title: 'Website Development, Branding, CRM & Automation Services',
+  title: 'Website, Branding, CRM & Automation Services',
   description:
     'Services from EvolvNex: business website development, brand identity, custom CRM and business systems, WhatsApp and workflow automation, and SEO-ready foundations.',
   path: '/services',
@@ -69,20 +68,9 @@ const services: ServiceItem[] = [
   },
 ]
 
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: GENERAL_FAQS.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-}
-
 export default function ServicesPage() {
   return (
     <>
-      <JsonLd data={faqJsonLd} />
       <PageHero
         crumbs={[{ name: 'Services', href: '/services' }]}
         eyebrow="Services"

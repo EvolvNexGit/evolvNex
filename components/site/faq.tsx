@@ -1,48 +1,52 @@
-'use client'
-
-import * as Accordion from '@radix-ui/react-accordion'
 import { Plus } from 'lucide-react'
+import { JsonLd } from './json-ld'
 
 export type FaqItem = { q: string; a: string }
 
 /**
- * Numbered accordion. The row lifts a red rail on hover/open, the plus turns into
- * a cross, and the answer slides open (Radix animates height via CSS variables).
+ * Numbered accordion built on native <details>, so every answer is in the server HTML
+ * (crawlers and AI fetchers see it) and works without JS. Emits matching FAQPage JSON-LD.
  */
 export function FAQ({ items, className }: { items: FaqItem[]; className?: string }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((i) => ({
+      '@type': 'Question',
+      name: i.q,
+      acceptedAnswer: { '@type': 'Answer', text: i.a },
+    })),
+  }
   return (
-    <Accordion.Root type="single" collapsible className={className ?? 'w-full max-w-3xl'}>
+    <div className={className ?? 'w-full max-w-3xl'}>
+      <JsonLd data={jsonLd} />
       {items.map((item, i) => (
-        <Accordion.Item
+        <details
           key={item.q}
-          value={`item-${i}`}
+          name="faq"
           className="group/faq relative border-b border-border first:border-t"
         >
           <span
             aria-hidden
-            className="absolute top-0 left-0 h-full w-0.5 origin-top scale-y-0 bg-primary transition-transform duration-300 group-hover/faq:scale-y-100 group-data-[state=open]/faq:scale-y-100"
+            className="absolute top-0 left-0 h-full w-0.5 origin-top scale-y-0 bg-primary transition-transform duration-300 group-hover/faq:scale-y-100 group-open/faq:scale-y-100"
           />
-          <Accordion.Header>
-            <Accordion.Trigger className="flex w-full items-start gap-4 py-5 pr-1 pl-4 text-left outline-none sm:gap-6 sm:pl-6">
-              <span className="font-display w-8 shrink-0 pt-0.5 text-sm text-primary/50 transition-colors group-hover/faq:text-primary group-data-[state=open]/faq:text-primary">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className="font-sub flex-1 text-base font-bold transition-colors group-hover/faq:text-white sm:text-lg">
-                {item.q}
-              </span>
-              <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover/faq:border-primary group-data-[state=open]/faq:border-primary group-data-[state=open]/faq:bg-primary group-data-[state=open]/faq:text-white">
-                <Plus className="size-4 transition-transform duration-300 group-data-[state=open]/faq:rotate-45" aria-hidden />
-              </span>
-            </Accordion.Trigger>
-          </Accordion.Header>
-          <Accordion.Content className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden">
-            <p className="pr-12 pb-6 pl-12 leading-relaxed text-muted-foreground sm:pl-[3.75rem]">
-              {item.a}
-            </p>
-          </Accordion.Content>
-        </Accordion.Item>
+          <summary className="flex w-full cursor-pointer list-none items-start gap-4 py-5 pr-1 pl-4 text-left outline-none marker:hidden sm:gap-6 sm:pl-6 [&::-webkit-details-marker]:hidden">
+            <span className="font-display w-8 shrink-0 pt-0.5 text-sm text-primary/50 transition-colors group-hover/faq:text-primary group-open/faq:text-primary">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span className="font-sub flex-1 text-base font-bold transition-colors group-hover/faq:text-white sm:text-lg">
+              {item.q}
+            </span>
+            <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover/faq:border-primary group-open/faq:border-primary group-open/faq:bg-primary group-open/faq:text-white">
+              <Plus className="size-4 transition-transform duration-300 group-open/faq:rotate-45" aria-hidden />
+            </span>
+          </summary>
+          <p className="pr-12 pb-6 pl-12 leading-relaxed text-muted-foreground sm:pl-[3.75rem]">
+            {item.a}
+          </p>
+        </details>
       ))}
-    </Accordion.Root>
+    </div>
   )
 }
 

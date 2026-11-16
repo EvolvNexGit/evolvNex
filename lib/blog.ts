@@ -58,7 +58,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: 'cafe-billing-inventory-customer-records',
-    title: 'How a Café Can Organize Billing, Inventory and Customer Records',
+    title: 'Café Billing, Inventory and Customer Records',
     description:
       'Billing, stock and customer details often live in separate places. Here is how a café can bring them together and what to look for in a system.',
     category: 'food-business',
@@ -82,7 +82,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: 'whatsapp-integration-reminders-follow-ups-consent',
-    title: 'WhatsApp Integration for Businesses: Reminders, Follow-Ups and Consent',
+    title: 'WhatsApp Business Reminders: Follow-Ups and Consent',
     description:
       'WhatsApp can handle reminders and follow-ups, but consent and opt-out matter. A plain-language overview for business owners.',
     category: 'automation',
@@ -105,7 +105,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: 'clinic-appointments-follow-ups-patient-records',
-    title: 'Clinic Appointments, Follow-Ups and Patient Records: Getting the Admin Right',
+    title: 'Clinic Appointments, Follow-Ups and Patient Records',
     description:
       'Missed follow-ups and scattered records slow a clinic down. A practical look at organising appointments, reminders and patient information, from an administrative point of view.',
     category: 'healthcare',
@@ -129,7 +129,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: 'signs-your-business-needs-a-brand-refresh',
-    title: 'Signs Your Business Needs a Brand Refresh (and What One Includes)',
+    title: 'Signs Your Business Needs a Brand Refresh',
     description:
       'Inconsistent logos, mismatched colours and a website that does not look like your business are common signs. Here is how to tell, and what a refresh usually covers.',
     category: 'branding',

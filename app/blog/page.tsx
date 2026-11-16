@@ -6,7 +6,7 @@ import { PageHero } from '@/components/site/page-hero'
 import { BlogCard } from '@/components/site/blog-card'
 
 export const metadata = buildMetadata({
-  title: 'Blog: Websites, CRM and Business Automation Guides',
+  title: 'Blog: Websites, CRM & Automation Guides',
   description:
     'Practical articles from EvolvNex on business websites, café and restaurant systems, clinic workflows and WhatsApp automation.',
   path: '/blog',
