@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Container } from './container'
 import { FOOTER_LINKS, SITE, whatsappUrl } from '@/lib/site'
+import { CookieSettingsButton } from './cookie-settings-button'
 
 export function Footer() {
   return (
@@ -86,7 +87,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} EvolvNex. All rights reserved.</p>
-          <p>Remote-first team working with clients online.</p>
+          <p>
+            Remote-first team working with clients online. <CookieSettingsButton />
+          </p>
         </div>
       </Container>
     </footer>
