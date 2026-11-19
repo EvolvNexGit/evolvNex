@@ -59,55 +59,58 @@ export function IntroLoader() {
             exit={{ scale: 14, opacity: 0, filter: 'blur(6px)' }}
             transition={{ duration: 0.95, ease: [0.7, 0, 0.84, 0] }}
           >
-            {/* mark: from far back to front */}
-            <motion.svg
-              viewBox="0 0 1996 851"
-              className="absolute -top-[46%] left-[44%] w-[34%] sm:-top-[52%]"
-              initial={{ scale: 0.15, opacity: 0, z: -800, filter: 'blur(12px)' }}
-              animate={{ scale: 1, opacity: 1, z: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 1.1, ease: EASE }}
-            >
-              <motion.path
-                d={MARK_PATH}
-                fill="#dc2626"
-                stroke="#dc2626"
-                strokeWidth={6}
-                initial={{ pathLength: 0, fillOpacity: 0 }}
-                animate={{ pathLength: 1, fillOpacity: 1 }}
-                transition={{ pathLength: { duration: 1, ease: EASE }, fillOpacity: { delay: 0.6, duration: 0.4 } }}
-              />
-            </motion.svg>
-
-            {/* wordmark */}
-            <div className="flex items-center gap-3 sm:gap-5">
+            {/* one line: mark + wordmark share a single font-size so they scale together */}
+            <div className="flex items-center gap-[0.9em] text-[clamp(1.35rem,5.2vw,3.1rem)]">
               <motion.span
-                className="hidden h-px w-10 origin-right bg-primary sm:block sm:w-20"
+                className="hidden h-px w-8 origin-right bg-primary md:block lg:w-14"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 1, duration: 0.6, ease: EASE }}
               />
-              <p className="font-display flex text-[clamp(2.5rem,9vw,6.5rem)] leading-none">
-                {LETTERS.map((ch, i) => (
-                  <motion.span
-                    key={i}
-                    className={i >= RED_FROM ? 'text-primary' : 'text-white'}
-                    initial={{ opacity: 0, y: 30, z: -300, filter: 'blur(8px)' }}
-                    animate={{ opacity: 1, y: 0, z: 0, filter: 'blur(0px)' }}
-                    transition={{ delay: 0.45 + i * 0.06, duration: 0.7, ease: EASE }}
-                  >
-                    {ch}
-                  </motion.span>
-                ))}
-              </p>
+              <div className="flex items-center gap-[0.32em]">
+                {/* mark: from far back to front */}
+                <motion.svg
+                  viewBox="0 0 1996 851"
+                  className="h-auto w-[1.9em] shrink-0"
+                  initial={{ scale: 0.15, opacity: 0, z: -800, filter: 'blur(12px)' }}
+                  animate={{ scale: 1, opacity: 1, z: 0, filter: 'blur(0px)' }}
+                  transition={{ duration: 1.1, ease: EASE }}
+                >
+                  <motion.path
+                    d={MARK_PATH}
+                    fill="#dc2626"
+                    stroke="#dc2626"
+                    strokeWidth={6}
+                    initial={{ pathLength: 0, fillOpacity: 0 }}
+                    animate={{ pathLength: 1, fillOpacity: 1 }}
+                    transition={{ pathLength: { duration: 1, ease: EASE }, fillOpacity: { delay: 0.6, duration: 0.4 } }}
+                  />
+                </motion.svg>
+
+                {/* wordmark */}
+                <p className="font-display flex leading-none">
+                  {LETTERS.map((ch, i) => (
+                    <motion.span
+                      key={i}
+                      className={i >= RED_FROM ? 'text-primary' : 'text-white'}
+                      initial={{ opacity: 0, y: 30, z: -300, filter: 'blur(8px)' }}
+                      animate={{ opacity: 1, y: 0, z: 0, filter: 'blur(0px)' }}
+                      transition={{ delay: 0.45 + i * 0.06, duration: 0.7, ease: EASE }}
+                    >
+                      {ch}
+                    </motion.span>
+                  ))}
+                </p>
+              </div>
               <motion.span
-                className="hidden h-px w-10 origin-left bg-primary sm:block sm:w-20"
+                className="hidden h-px w-8 origin-left bg-primary md:block lg:w-14"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 1, duration: 0.6, ease: EASE }}
               />
             </div>
             <motion.p
-              className="font-sub mt-5 text-[11px] font-bold uppercase text-sand sm:text-sm"
+              className="font-sub mt-4 text-[10px] font-bold uppercase text-sand sm:text-xs"
               initial={{ opacity: 0, letterSpacing: '0.1em' }}
               animate={{ opacity: 1, letterSpacing: '0.45em' }}
               transition={{ delay: 1.2, duration: 0.8, ease: EASE }}
