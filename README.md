@@ -8,6 +8,26 @@ This repository is linked to a [v0](https://v0.app) project. You can continue de
 
 [Continue working on v0 →](https://v0.app/chat/projects/prj_0DJKpmfHxCgRPLpjuaVSg4PX9MlV)
 
+## Contact form
+
+The form posts to `/api/contact` (`app/api/contact/route.ts`), which validates the input, rate-limits it
+and forwards it server-side to the Google Apps Script. All environment variables are optional:
+
+| Variable | Purpose |
+|---|---|
+| `CONTACT_WEBHOOK_URL` | Apps Script URL. Falls back to the legacy URL in the route until set. Set it, then rotate the old deployment. |
+| `CONTACT_WEBHOOK_SECRET` | Sent to the Apps Script as `secret`; make the script reject requests without it. |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY` | Enable Cloudflare Turnstile CAPTCHA (set both). |
+| `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` | Shared rate-limit store. Without it limits are per server instance only. |
+
+Limits: 5 submissions per IP per 10 minutes, 100 per hour site-wide, 16 KB request body.
+
+## Security headers
+
+Set in `next.config.mjs` (production only). Frame protection, HSTS and `nosniff` are enforced.
+The full Content-Security-Policy is **report-only**: watch the browser console for violations, then
+move it to an enforced `Content-Security-Policy` header.
+
 ## Getting Started
 
 First, run the development server:
