@@ -14,6 +14,7 @@ import { ServiceGrid, type ServiceItem } from '@/components/home/service-grid'
 import { HomeGrid } from '@/components/site/grid-showroom'
 import { IndustryFlip, type IndustryItem } from '@/components/home/industry-flip'
 import { Approach } from '@/components/home/approach'
+import { BrandTeaser } from '@/components/home/brand-teaser'
 
 export const metadata = buildMetadata({
   title: 'Websites, Branding, CRM & Business Automation',
@@ -147,6 +148,9 @@ export default function HomePage() {
           <HomeGrid featured={top} all={PROJECTS} />
         </Container>
       </Section>
+
+      {/* Brand identity teaser: monochrome-to-colour reveal */}
+      <BrandTeaser />
 
       {/* How we work: identical to the original evolvnex.com section */}
       <Approach />
