@@ -70,11 +70,27 @@ const nextConfig = {
   poweredByHeader: false,
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Optimised variants are reused for a week instead of being re-checked constantly.
+    minimumCacheTTL: 60 * 60 * 24 * 7,
+  },
+  // Smaller client bundles: only the icons / motion features actually imported are shipped.
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   // Headers are production-only so the dev server (which needs eval) is unaffected.
   async headers() {
     if (!isProd) return []
-    return [{ source: '/:path*', headers: securityHeaders }]
+    // Static brand/work images: cache for a day, serve stale while revalidating for a week
+    // (short enough that swapping a file under the same name still shows up quickly).
+    const staticCache = {
+      key: 'Cache-Control',
+      value: 'public, max-age=86400, stale-while-revalidate=604800',
+    }
+    return [
+      { source: '/:path*', headers: securityHeaders },
+      { source: '/images/:path*', headers: [staticCache] },
+      { source: '/:file(symbol.png|favicon.svg|favicon-32x32.svg)', headers: [staticCache] },
+    ]
   },
 }
 
