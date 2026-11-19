@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { Fugaz_One, Gabarito, Sansation } from 'next/font/google'
-import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
 import WhatsAppButton from '@/components/whatsapp-button'
@@ -9,6 +8,7 @@ import { Footer } from '@/components/site/footer'
 import { Providers } from '@/components/site/providers'
 import { SiteBackground } from '@/components/site/site-background'
 import { JsonLd } from '@/components/site/json-ld'
+import { AnalyticsConsent } from '@/components/site/analytics-consent'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo'
 import { SITE } from '@/lib/site'
 import './globals.css'
@@ -71,19 +71,8 @@ export default function RootLayout({
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={websiteJsonLd} />
 
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-GWNE687LV4"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-GWNE687LV4');
-          `}
-        </Script>
+        {/* Google Analytics loads only after the visitor accepts (see analytics-consent.tsx) */}
+        <AnalyticsConsent />
         <Analytics />
       </body>
     </html>

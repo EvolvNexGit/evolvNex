@@ -39,9 +39,14 @@ export default function PrivacyPage() {
           <section>
             <h2>Analytics</h2>
             <p>
-              We use Google Analytics and Vercel Analytics to understand how the site is used,
-              such as which pages are visited. These services may set cookies or collect
-              device and usage information.
+              We use Vercel Analytics to count page views. It is designed to work without cookies and
+              does not identify you personally.
+            </p>
+            <p className="mt-3">
+              We also use Google Analytics to understand which pages are useful. It sets cookies
+              and collects device and usage information, so it only runs if you click Accept on
+              the banner. You can change your choice at any time with “Cookie settings” in the
+              footer; declining or withdrawing stops further tracking and removes its cookies.
             </p>
           </section>
           <section>

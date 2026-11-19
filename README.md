@@ -28,6 +28,25 @@ Set in `next.config.mjs` (production only). Frame protection, HSTS and `nosniff`
 The full Content-Security-Policy is **report-only**: watch the browser console for violations, then
 move it to an enforced `Content-Security-Policy` header.
 
+## Analytics consent
+
+Google Analytics loads only after the visitor clicks Accept in the banner
+(`components/site/analytics-consent.tsx`). The choice is kept in `localStorage`; the footer's
+"Cookie settings" reopens it, and declining removes GA cookies and stops further hits.
+Vercel Analytics (cookie-free page counts) is not gated.
+
+## Quality checks
+
+```bash
+pnpm lint    # eslint (Next + TypeScript rules)
+pnpm test    # vitest: /api/contact route and rate limiter
+pnpm build   # type-checks and builds
+pnpm audit --prod
+```
+
+Error handling: `app/not-found.tsx` (404), `app/error.tsx` (runtime errors inside pages) and
+`app/global-error.tsx` (root layout failures) are branded and never show technical detail.
+
 ## Getting Started
 
 First, run the development server:
