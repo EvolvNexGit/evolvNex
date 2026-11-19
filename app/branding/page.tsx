@@ -7,6 +7,8 @@ import { SectionHeading } from '@/components/site/section-heading'
 import { FeatureList, ScopeNote } from '@/components/site/feature-list'
 import { CTA } from '@/components/site/cta'
 import { TextLink } from '@/components/site/text-link'
+import { BrandReveal } from '@/components/brand/brand-reveal'
+import { BRAND_LAYOUT, resolveLayout } from '@/lib/brand-grid'
 
 export const metadata = buildMetadata({
   title: 'Brand Identity & Branding Services',
@@ -14,6 +16,8 @@ export const metadata = buildMetadata({
     'EvolvNex helps founders and growing businesses build a consistent brand identity: visual direction, logo direction, colour and typography systems, and brand guidelines.',
   path: '/branding',
 })
+
+const brandTiles = resolveLayout(BRAND_LAYOUT)
 
 // TODO (business): confirm exact branding deliverables before publishing as final.
 const deliverables = [
@@ -37,6 +41,19 @@ export default function BrandingPage() {
           Discuss a Project
         </ButtonLink>
       </PageHero>
+
+      {/* Studio wall. TODO (business): sample identities, swap for client work in lib/brand-grid.ts */}
+      <section aria-label="Brand identity work" className="pt-10 md:pt-14">
+        <div className="mx-auto w-full max-w-[1320px] px-3 sm:px-5">
+          <BrandReveal
+            tiles={brandTiles}
+            flips
+            initial={0.3}
+            handleAt={68}
+            label="Brand identity showcase: pull the tab to reveal colour"
+          />
+        </div>
+      </section>
 
       <Section>
         <Container className="grid gap-12 lg:grid-cols-2">
