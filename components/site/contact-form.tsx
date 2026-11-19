@@ -1,23 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { Turnstile } from '@/components/site/turnstile'
+import { INTERESTS, LIMITS } from '@/lib/contact-shared'
+import { SITE } from '@/lib/site'
 
-// Existing Google Apps Script endpoint, preserved from the previous site.
-const FORM_ENDPOINT =
-  'https://script.google.com/macros/s/AKfycbxCOLa0Nyg0JNQR5rM3tMTKMYE4oWx-q0HdYz5LCxwgtu72t2_-loblv3tegx6e9Vxj/exec'
-
-const INTERESTS = [
-  'Website development',
-  'Branding',
-  'Custom CRM / business system',
-  'Food business CRM / POS',
-  'Healthcare CRM',
-  'WhatsApp / workflow automation',
-  'Not sure yet',
-]
+// Submissions go to our own /api/contact route, which validates, rate-limits and forwards
+// them server-side. No third-party endpoint is exposed to the browser.
+const SUBMIT_URL = '/api/contact'
+const SUBMIT_TIMEOUT_MS = 15_000
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ''
 
 const fieldClass =
   'w-full rounded-md border border-border bg-card px-4 py-3 text-base text-foreground placeholder:text-subtle transition-colors focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 aria-[invalid=true]:border-destructive'
@@ -81,6 +76,9 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
   const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({})
   const [submitting, setSubmitting] = useState(false)
   const [sent, setSent] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState('')
+  const [captchaNonce, setCaptchaNonce] = useState(0)
+  const onCaptchaToken = useCallback((t: string) => setCaptchaToken(t), [])
 
   const set = <K extends keyof Values>(key: K, value: Values[K]) =>
     setValues((v) => ({ ...v, [key]: value }))
@@ -104,47 +102,73 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
       return
     }
 
-    setSubmitting(true)
-    try {
-      const message = [
-        values.interest && `Interested in: ${values.interest}`,
-        values.message.trim(),
-        values.phone.trim() &&
-          `Phone: ${values.phone.trim()} (WhatsApp follow-up consent: ${values.consent ? 'yes' : 'no'})`,
-      ]
-        .filter(Boolean)
-        .join('\n\n')
+    if (TURNSTILE_SITE_KEY && !captchaToken) {
+      toast.error('Please complete the security check, then send again.')
+      return
+    }
 
-      const response = await fetch(FORM_ENDPOINT, {
+    setSubmitting(true)
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS)
+    try {
+      const response = await fetch(SUBMIT_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           name: values.name.trim(),
           email: values.email.trim(),
           company: values.company.trim(),
-          budget: '',
-          message,
           phone: values.phone.trim(),
           interest: values.interest,
-          whatsappConsent: values.consent,
+          message: values.message.trim(),
+          consent: values.consent,
+          website: values.website,
+          turnstileToken: captchaToken,
         }),
       })
-      const text = await response.text()
-      let data: { status?: string }
+      let data: { status?: string; message?: string; fields?: Record<string, string> } = {}
       try {
-        data = JSON.parse(text)
+        data = await response.json()
       } catch {
-        throw new Error('Invalid response from server')
+        // non-JSON body: handled as a generic failure below
       }
-      if (data.status !== 'success') throw new Error('Script error')
 
-      setSent(true)
-      setValues(empty)
-      toast.success('Message sent. We will get back to you soon.')
+      if (response.ok && data.status === 'success') {
+        setSent(true)
+        setValues(empty)
+        toast.success('Message sent. We will get back to you soon.')
+        return
+      }
+
+      // Failed: keep everything the visitor typed so they can retry.
+      if (response.status === 422 && data.fields) {
+        const fieldErrors: Partial<Record<keyof Values, string>> = {}
+        if (data.fields.name) fieldErrors.name = 'Please enter your name.'
+        if (data.fields.email) fieldErrors.email = 'Please enter a valid email address.'
+        if (data.fields.message)
+          fieldErrors.message = 'Please check your message (10 to 4000 characters).'
+        setErrors(fieldErrors)
+        toast.error('Please check the highlighted fields.')
+      } else if (response.status === 429) {
+        const wait = Number(response.headers.get('Retry-After'))
+        toast.error(
+          wait > 0
+            ? `Too many attempts. Please try again in about ${Math.ceil(wait / 60)} minute(s).`
+            : 'Too many attempts. Please try again in a few minutes.',
+        )
+      } else {
+        toast.error(`Could not send your message. Please try again or email ${SITE.email}.`)
+      }
     } catch (err) {
-      console.error('Submission error:', err)
-      toast.error('Could not send your message. Please try again or email us directly.')
+      console.error('Submission error:', err instanceof Error ? err.name : 'unknown')
+      toast.error(`Could not send your message. Please try again or email ${SITE.email}.`)
     } finally {
+      clearTimeout(timer)
       setSubmitting(false)
+      // Turnstile tokens are single use: get a fresh one for any retry.
+      setCaptchaToken('')
+      setCaptchaNonce((n) => n + 1)
     }
   }
 
@@ -177,6 +201,7 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
           <input
             id="field-name"
             name="name"
+            maxLength={LIMITS.name}
             autoComplete="name"
             required
             value={values.name}
@@ -190,6 +215,7 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
           <input
             id="field-company"
             name="company"
+            maxLength={LIMITS.company}
             autoComplete="organization"
             value={values.company}
             onChange={(e) => set('company', e.target.value)}
@@ -204,6 +230,7 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
             id="field-email"
             name="email"
             type="email"
+            maxLength={LIMITS.email}
             autoComplete="email"
             required
             value={values.email}
@@ -218,6 +245,7 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
             id="field-phone"
             name="phone"
             type="tel"
+            maxLength={LIMITS.phone}
             autoComplete="tel"
             value={values.phone}
             onChange={(e) => set('phone', e.target.value)}
@@ -252,6 +280,7 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
         <textarea
           id="field-message"
           name="message"
+          maxLength={LIMITS.message}
           rows={5}
           required
           value={values.message}
@@ -288,6 +317,10 @@ export function ContactForm({ defaultInterest = '' }: { defaultInterest?: string
           replying STOP. Optional; email follow-up does not depend on it.
         </label>
       </div>
+
+      {TURNSTILE_SITE_KEY && (
+        <Turnstile key={captchaNonce} siteKey={TURNSTILE_SITE_KEY} onToken={onCaptchaToken} />
+      )}
 
       <button
         type="submit"
